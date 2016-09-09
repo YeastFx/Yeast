@@ -19,7 +19,7 @@ namespace Yeast.Multitenancy.Tests
         {
             using (var server = CreateTestServer(
                 (appServices) => appServices.AddSingleton(new MockStatefullService() { State = "appRoot" }),
-                new MockTenantResolver(
+                new MockITenantResolver(
                     new[] { "tenant1", "tenant2" },
                     (tenant) =>
                         new TenantContext<string>(tenant,
@@ -31,9 +31,9 @@ namespace Yeast.Multitenancy.Tests
             ))
             {
                 var client = server.CreateClient();
-                Assert.Equal("tenant1", await client.GetStringAsync("/tenant1"));
-                Assert.Equal("tenant2", await client.GetStringAsync("/tenant2"));
-                Assert.Equal("appRoot", await client.GetStringAsync("/foo"));
+                Assert.Equal("tenant1", await client.GetStringAsync("http://tenant1/"));
+                Assert.Equal("tenant2", await client.GetStringAsync("http://tenant2/"));
+                Assert.Equal("appRoot", await client.GetStringAsync("http://foo/"));
             }
         }
 
@@ -42,7 +42,7 @@ namespace Yeast.Multitenancy.Tests
         {
             using (var server = CreateTestServer(
                 (appServices) => appServices.AddSingleton(new MockStatefullService()),
-                new MockTenantResolver(
+                new MockITenantResolver(
                     new[] { "tenant1", "tenant2" },
                     (tenant) =>
                         new TenantContext<string>(tenant,
@@ -54,9 +54,9 @@ namespace Yeast.Multitenancy.Tests
             ))
             {
                 var client = server.CreateClient();
-                var resonse = await client.PostAsync("/tenant1", new StringContent("foo"));
+                var resonse = await client.PostAsync("http://tenant1/", new StringContent("foo"));
                 Assert.Equal("foo", await resonse.Content.ReadAsStringAsync());
-                Assert.Equal("tenant1", await client.GetStringAsync("/tenant1"));
+                Assert.Equal("tenant1", await client.GetStringAsync("http://tenant1/"));
             }
         }
 
