@@ -1,0 +1,103 @@
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Xunit;
+using Yeast.Multitenancy.Tests.Mocks;
+
+namespace Yeast.Multitenancy.Tests
+{
+    public class TenantResolverMiddlewareTests
+    {
+        [Fact]
+        public async Task ShouldReplaceRequestServicesWhenTenantResolved()
+        {
+            using (var server = CreateTestServer(
+                (appServices) => appServices.AddSingleton(new MockStatefullService() { State = "appRoot" }),
+                new MockTenantResolver(
+                    new[] { "tenant1", "tenant2" },
+                    (tenant) =>
+                        new TenantContext<string>(tenant,
+                            new ServiceCollection()
+                                .AddSingleton(new MockStatefullService() { State = tenant})
+                                .BuildServiceProvider()
+                        )
+                )
+            ))
+            {
+                var client = server.CreateClient();
+                Assert.Equal("tenant1", await client.GetStringAsync("/tenant1"));
+                Assert.Equal("tenant2", await client.GetStringAsync("/tenant2"));
+                Assert.Equal("appRoot", await client.GetStringAsync("/foo"));
+            }
+        }
+
+        [Fact]
+        public async Task ShouldCreateServiceScopePerRequest()
+        {
+            using (var server = CreateTestServer(
+                (appServices) => appServices.AddSingleton(new MockStatefullService()),
+                new MockTenantResolver(
+                    new[] { "tenant1", "tenant2" },
+                    (tenant) =>
+                        new TenantContext<string>(tenant,
+                            new ServiceCollection()
+                                .AddScoped((_) => new MockStatefullService() { State = tenant })
+                                .BuildServiceProvider()
+                        )
+                )
+            ))
+            {
+                var client = server.CreateClient();
+                var resonse = await client.PostAsync("/tenant1", new StringContent("foo"));
+                Assert.Equal("foo", await resonse.Content.ReadAsStringAsync());
+                Assert.Equal("tenant1", await client.GetStringAsync("/tenant1"));
+            }
+        }
+
+        #region Helper functions
+        private static TestServer CreateTestServer(Action<IServiceCollection> appServices, ITenantResolver<string> tenantResolver)
+        {
+            return new TestServer(
+                new WebHostBuilder()
+                    .ConfigureServices(
+                        services =>
+                        {
+                            appServices.Invoke(services);
+                            services.AddMultitenancy(tenantResolver);
+                        })
+                    .Configure(
+                        app =>
+                        {
+                            app.UseMultitenancy<string>();
+                            app.Run(
+                                async ctx =>
+                                {
+                                    var service = ctx.RequestServices.GetService<MockStatefullService>();
+                                    switch (ctx.Request.Method)
+                                    {
+                                        case "GET":
+                                            await ctx.Response.WriteAsync(service.State);
+                                            break;
+                                        case "POST":
+                                            using (var reader = new StreamReader(ctx.Request.Body))
+                                            {
+                                                service.State = await reader.ReadToEndAsync();
+                                            }
+                                            await ctx.Response.WriteAsync(service.State);
+                                            break;
+                                    }
+                                }
+                            );
+                        })
+            );
+        }
+
+        #endregion
+    }
+}
