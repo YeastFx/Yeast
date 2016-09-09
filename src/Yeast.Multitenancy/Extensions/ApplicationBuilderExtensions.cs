@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Yeast.Core.Helpers;
+using Yeast.Multitenancy.Internal;
 
 namespace Yeast.Multitenancy
 {

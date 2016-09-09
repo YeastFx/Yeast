@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Yeast.Core.Helpers;
 
-namespace Yeast.Multitenancy
+namespace Yeast.Multitenancy.Internal
 {
     public class TenantResolverMiddleware<TTenant>
     {
