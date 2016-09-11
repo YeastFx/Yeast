@@ -6,30 +6,31 @@ using System.Threading.Tasks;
 
 namespace Yeast.Multitenancy.Tests.Mocks
 {
-    public class MockITenantResolver : ITenantResolver<string>
+    public class MockITenantResolver : ITenantResolver<MockTenant>
     {
-        private readonly Func<string, TenantContext<string>> _tenantContextFactory;
-        private readonly IEnumerable<string> _tenantNames;
-        private readonly IDictionary<string, TenantContext<string>> _tenantContexts;
+        private readonly Func<MockTenant, TenantContext<MockTenant>> _tenantContextFactory;
+        private readonly IEnumerable<MockTenant> _tenants;
+        private readonly IDictionary<string, TenantContext<MockTenant>> _tenantContexts = new Dictionary<string, TenantContext<MockTenant>>();
 
-        public MockITenantResolver(IEnumerable<string> tenantNames, Func<string, TenantContext<string>> tenantContextFactory) {
-            _tenantNames = tenantNames;
+        public MockITenantResolver(IEnumerable<MockTenant> tenants, Func<MockTenant, TenantContext<MockTenant>> tenantContextFactory) {
+            _tenants = tenants;
             _tenantContextFactory = tenantContextFactory;
-            _tenantContexts = new Dictionary<string, TenantContext<string>>();
         }
 
-        public Task<TenantContext<string>> ResolveAsync(HttpContext context)
+        public Task<TenantContext<MockTenant>> ResolveAsync(HttpContext context)
         {
-            return Task.Run(
-                () =>
+            return Task.Run(() =>
+            {
+                string tenantName = context.Request.Host.Value;
+                if(_tenantContexts.ContainsKey(tenantName))
                 {
-                    string tenantName = context.Request.Host.Value;
-                    if(_tenantContexts.ContainsKey(tenantName))
+                    return _tenantContexts[tenantName];
+                }
+                else {
+                    var tenant = _tenants.SingleOrDefault(t => t.Identifier == tenantName);
+                    if(tenant != null)
                     {
-                        return _tenantContexts[tenantName];
-                    }
-                    else if (_tenantNames.Contains(tenantName)) {
-                        var ctx = _tenantContextFactory.Invoke(tenantName);
+                        var ctx = _tenantContextFactory.Invoke(tenant);
                         _tenantContexts.Add(tenantName, ctx);
                         return ctx;
                     }
@@ -38,7 +39,7 @@ namespace Yeast.Multitenancy.Tests.Mocks
                         return null;
                     }
                 }
-            );
+            });
         }
     }
 }

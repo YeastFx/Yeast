@@ -9,6 +9,7 @@ namespace Yeast.Multitenancy
     /// <typeparam name="TTenant">Type of resolved tenant</typeparam>
     /// <remarks>Used by TenantResolverMiddleware</remarks>
     public interface ITenantResolver<TTenant>
+        where TTenant : ITenant
     {
         /// <summary>
         /// Resolves current tenant

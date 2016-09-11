@@ -20,11 +20,11 @@ namespace Yeast.Multitenancy.Tests
             using (var server = CreateTestServer(
                 (appServices) => appServices.AddSingleton(new MockStatefullService() { State = "appRoot" }),
                 new MockITenantResolver(
-                    new[] { "tenant1", "tenant2" },
+                    new[] { new MockTenant("tenant1"), new MockTenant("tenant2") },
                     (tenant) =>
-                        new TenantContext<string>(tenant,
+                        new TenantContext<MockTenant>(tenant,
                             new ServiceCollection()
-                                .AddSingleton(new MockStatefullService() { State = tenant})
+                                .AddSingleton(new MockStatefullService() { State = tenant.Identifier})
                                 .BuildServiceProvider()
                         )
                 )
@@ -43,11 +43,11 @@ namespace Yeast.Multitenancy.Tests
             using (var server = CreateTestServer(
                 (appServices) => appServices.AddSingleton(new MockStatefullService()),
                 new MockITenantResolver(
-                    new[] { "tenant1", "tenant2" },
+                    new[] { new MockTenant("tenant1"), new MockTenant("tenant2") },
                     (tenant) =>
-                        new TenantContext<string>(tenant,
+                        new TenantContext<MockTenant>(tenant,
                             new ServiceCollection()
-                                .AddScoped((_) => new MockStatefullService() { State = tenant })
+                                .AddScoped((_) => new MockStatefullService() { State = tenant.Identifier })
                                 .BuildServiceProvider()
                         )
                 )
@@ -61,7 +61,7 @@ namespace Yeast.Multitenancy.Tests
         }
 
         #region Helper functions
-        private static TestServer CreateTestServer(Action<IServiceCollection> appServices, ITenantResolver<string> tenantResolver)
+        private static TestServer CreateTestServer(Action<IServiceCollection> appServices, ITenantResolver<MockTenant> tenantResolver)
         {
             return new TestServer(
                 new WebHostBuilder()
@@ -74,7 +74,7 @@ namespace Yeast.Multitenancy.Tests
                     .Configure(
                         app =>
                         {
-                            app.UseMultitenancy<string>();
+                            app.UseMultitenancy<MockTenant>();
                             app.Run(
                                 async ctx =>
                                 {

@@ -13,6 +13,7 @@ namespace Yeast.Multitenancy
         /// <param name="app">The <see cref="IApplicationBuilder"/> instance</param>
         /// <returns></returns>
         public static IApplicationBuilder UseMultitenancy<TTenant>(this IApplicationBuilder app)
+            where TTenant :ITenant
         {
             Ensure.Argument.NotNull(app, nameof(app));
             return app.UseMiddleware<TenantResolverMiddleware<TTenant>>();

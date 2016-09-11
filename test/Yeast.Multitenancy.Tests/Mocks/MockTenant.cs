@@ -1,7 +1,18 @@
 ﻿namespace Yeast.Multitenancy.Tests.Mocks
 {
-    public class MockTenant
+    public class MockTenant :ITenant
     {
-        public string Name { get; set; }
+        private readonly string _identifier;
+
+        public MockTenant(string identifier)
+        {
+            _identifier = identifier;
+        }
+
+        public string Identifier {
+            get {
+                return _identifier;
+            }
+        }
     }
 }

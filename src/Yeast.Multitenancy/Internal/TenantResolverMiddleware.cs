@@ -6,6 +6,7 @@ using Yeast.Core.Helpers;
 namespace Yeast.Multitenancy.Internal
 {
     public class TenantResolverMiddleware<TTenant>
+        where TTenant : ITenant
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;

@@ -14,7 +14,7 @@ namespace Yeast.Multitenancy
         /// <param name="resolverFactory">The factory that creates the <see cref="Yeast.Multitenancy.ITenantResolver{TTenant}"/></param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
         public static IServiceCollection AddMultitenancy<TTenant>(this IServiceCollection services, Func<IServiceProvider, ITenantResolver<TTenant>> resolverFactory)
-            where TTenant : class
+            where TTenant : ITenant
         {
             Ensure.Argument.NotNull(services, nameof(services));
             Ensure.Argument.NotNull(resolverFactory, nameof(resolverFactory));
@@ -32,7 +32,7 @@ namespace Yeast.Multitenancy
         /// <param name="resolverInstance">The instance of <see cref="ITenantResolver{TTenant}"/></param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
         public static IServiceCollection AddMultitenancy<TTenant>(this IServiceCollection services, ITenantResolver<TTenant> resolverInstance)
-            where TTenant : class
+            where TTenant : ITenant
         {
             Ensure.Argument.NotNull(services, nameof(services));
             Ensure.Argument.NotNull(resolverInstance, nameof(resolverInstance));
@@ -51,7 +51,7 @@ namespace Yeast.Multitenancy
         /// <returns>A reference to this instance after the operation has completed.</returns>
         public static IServiceCollection AddMultitenancy<TTenant, TResolver>(this IServiceCollection services)
             where TResolver : class, ITenantResolver<TTenant>
-            where TTenant : class
+            where TTenant : ITenant
         {
             Ensure.Argument.NotNull(services, nameof(services));
 
