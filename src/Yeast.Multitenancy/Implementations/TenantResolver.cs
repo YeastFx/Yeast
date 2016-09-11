@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Yeast.Core.Helpers;
+using Yeast.Core.Logging;
 
 namespace Yeast.Multitenancy.Implementations
 {
@@ -13,6 +15,8 @@ namespace Yeast.Multitenancy.Implementations
         where TTenant : ITenant
     {
         protected readonly ConcurrentDictionary<string, object> buildingLocks = new ConcurrentDictionary<string, object>();
+
+        protected ILogger _logger = NullLogger.Instance;
 
         /// <summary>
         /// Identifies the tenant based on the <paramref name="context"/>
@@ -50,11 +54,13 @@ namespace Yeast.Multitenancy.Implementations
 
             if (tenant != null)
             {
+                _logger.LogDebug("Tenant \"{identifier}\" identified.", tenant.Identifier);
                 TenantContext<TTenant> tenantContext;
 
                 if (TryGetTenantContext(tenant, out tenantContext))
                 {
                     // Already built tenant context
+                    _logger.LogDebug("Tenant context for \"{identifier}\" restored.", tenant.Identifier);
                     return tenantContext;
                 }
                 else
@@ -65,12 +71,14 @@ namespace Yeast.Multitenancy.Implementations
                     {
                         if (TryGetTenantContext(tenant, out tenantContext))
                         {
+                            _logger.LogDebug("Tenant context for \"{identifier}\" restored.", tenant.Identifier);
                             return tenantContext;
                         }
                         else
                         {
                             tenantContext = BuildTenantContext(tenant);
                             Ensure.NotNull(tenantContext);
+                            _logger.LogInformation("Tenant context for \"{identifier}\" created.", tenant.Identifier);
                         }
                     }
 
@@ -79,6 +87,7 @@ namespace Yeast.Multitenancy.Implementations
             }
             else
             {
+                _logger.LogDebug("Unidentified tenant.");
                 return null;
             }
         }
