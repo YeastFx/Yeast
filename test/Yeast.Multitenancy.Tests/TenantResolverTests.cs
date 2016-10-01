@@ -12,8 +12,8 @@ namespace Yeast.Multitenancy.Tests
         public async void ShouldThrowOnNullHttpContext()
         {
             var resolver = new MockTenantResolver(
-                    new[] { new MockTenant("tenant1"), new MockTenant("tenant2") },
-                    (tenant) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
+                new[] { new MockTenant("tenant1"), new MockTenant("tenant2") },
+                (tenant) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
             );
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await resolver.ResolveAsync(null));
         }
@@ -22,41 +22,28 @@ namespace Yeast.Multitenancy.Tests
         public async void ShouldReturnNullTenantContextIfUnresolved()
         {
             var resolver = new MockTenantResolver(
-                    new[] { new MockTenant("tenant1") },
-                    (tenant) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
+                new[] { new MockTenant("tenant1") },
+                (tenant) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
             );
 
-            Assert.NotNull(await resolver.ResolveAsync(MockTenantHttpContext("tenant1")));
-            Assert.Null(await resolver.ResolveAsync(MockTenantHttpContext("foo")));
+            Assert.NotNull(await resolver.ResolveAsync(MockHttpContext.WithHostname("tenant1")));
+            Assert.Null(await resolver.ResolveAsync(MockHttpContext.WithHostname("foo")));
         }
 
         [Fact]
-        public void ShouldNotBuildTenantContextsConcurrently()
+        public void ShouldNotBuildSameTenantContextConcurrently()
         {
             var buildCount = 0;
             var resolver = new MockTenantResolver(
-                    new[] { new MockTenant("tenant1") },
-                    (tenant) =>
-                    {
-                        buildCount++;
-                        return new TenantContext<MockTenant>(tenant, new MockIServiceProvider());
-                    }
-            );
-            Parallel.For(0, 10, async (idx) => await resolver.ResolveAsync(MockTenantHttpContext("tenant1")));
-            Assert.Equal(1, buildCount);
-        }
-
-        #region Helper functions
-        private static MockHttpContext MockTenantHttpContext(string hostname)
-        {
-            return new MockHttpContext(
-                new MockHttpRequest()
+                new[] { new MockTenant("tenant1") },
+                (tenant) =>
                 {
-                    Host = new HostString(hostname)
+                    buildCount++;
+                    return new TenantContext<MockTenant>(tenant, new MockIServiceProvider());
                 }
             );
+            Parallel.For(0, 10, async (idx) => await resolver.ResolveAsync(MockHttpContext.WithHostname("tenant1")));
+            Assert.Equal(1, buildCount);
         }
-
-        #endregion
     }
 }

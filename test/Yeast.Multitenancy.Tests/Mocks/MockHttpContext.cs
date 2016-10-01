@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Http.Features;
+using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading;
 
@@ -18,6 +16,7 @@ namespace Yeast.Multitenancy.Tests.Mocks
             _request = request;
         }
 
+        #region HttpContext properties
         public override AuthenticationManager Authentication {
             get {
                 throw new NotImplementedException();
@@ -110,5 +109,16 @@ namespace Yeast.Multitenancy.Tests.Mocks
         {
             throw new NotImplementedException();
         }
-    }
+        #endregion
+
+        public static MockHttpContext WithHostname(string hostname)
+        {
+            return new MockHttpContext(
+                new MockHttpRequest()
+                {
+                    Host = new HostString(hostname)
+                }
+            );
+        }
+}
 }

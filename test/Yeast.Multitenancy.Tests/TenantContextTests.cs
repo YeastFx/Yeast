@@ -17,7 +17,7 @@ namespace Yeast.Multitenancy.Tests
         {
             var stubServiceProvider = new MockServiceProvider();
             using (var tenantContext = new TenantContext(stubServiceProvider)) { }
-            Assert.Equal(true, stubServiceProvider.IsDisposed);
+            Assert.True(stubServiceProvider.IsDisposed);
         }
 
     }
