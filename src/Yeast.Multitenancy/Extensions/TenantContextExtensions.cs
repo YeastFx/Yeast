@@ -12,7 +12,8 @@ namespace Yeast.Multitenancy
         /// <returns></returns>
         public static IServiceScope CreateServiceScope(this TenantContext tenantContext)
         {
-            Ensure.NotNull(tenantContext, nameof(tenantContext));
+            Ensure.Argument.NotNull(tenantContext, nameof(tenantContext));
+
             return tenantContext.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
         }
     }
