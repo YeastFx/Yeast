@@ -24,6 +24,14 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yeast.Multitenancy.Tests", 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MultitenantApp", "samples\MultitenantApp\MultitenantApp.xproj", "{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yeast.DependencyInjection.Abstractions", "src\Yeast.DependencyInjection.Abstractions\Yeast.DependencyInjection.Abstractions.xproj", "{927E162D-A4A4-4A18-910E-6A52064A8EFC}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yeast.DependencyInjection.Autofac", "src\Yeast.DependencyInjection.Autofac\Yeast.DependencyInjection.Autofac.xproj", "{F5CD14A9-AC75-4403-A521-8B0AB3A0C3F5}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yeast.DependencyInjection.StructureMap", "src\Yeast.DependencyInjection.StructureMap\Yeast.DependencyInjection.StructureMap.xproj", "{A8948B43-4E23-4671-966D-7D21148A78A5}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yeast.DependencyInjection", "src\Yeast.DependencyInjection\Yeast.DependencyInjection.xproj", "{602FB36D-17A3-4B7A-8B8E-65F0633081FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +54,22 @@ Global
 		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{927E162D-A4A4-4A18-910E-6A52064A8EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{927E162D-A4A4-4A18-910E-6A52064A8EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{927E162D-A4A4-4A18-910E-6A52064A8EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{927E162D-A4A4-4A18-910E-6A52064A8EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5CD14A9-AC75-4403-A521-8B0AB3A0C3F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5CD14A9-AC75-4403-A521-8B0AB3A0C3F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5CD14A9-AC75-4403-A521-8B0AB3A0C3F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5CD14A9-AC75-4403-A521-8B0AB3A0C3F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8948B43-4E23-4671-966D-7D21148A78A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8948B43-4E23-4671-966D-7D21148A78A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8948B43-4E23-4671-966D-7D21148A78A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8948B43-4E23-4671-966D-7D21148A78A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{602FB36D-17A3-4B7A-8B8E-65F0633081FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{602FB36D-17A3-4B7A-8B8E-65F0633081FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{602FB36D-17A3-4B7A-8B8E-65F0633081FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{602FB36D-17A3-4B7A-8B8E-65F0633081FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +79,9 @@ Global
 		{925882EC-C97C-4123-B9C8-B012DE05C2AE} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{AC00AF2E-0462-4242-AD6D-75DEBC379823} = {F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}
 		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22} = {50F67FA6-ED77-4214-9ED0-FA6458B154B0}
+		{927E162D-A4A4-4A18-910E-6A52064A8EFC} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
+		{F5CD14A9-AC75-4403-A521-8B0AB3A0C3F5} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
+		{A8948B43-4E23-4671-966D-7D21148A78A5} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
+		{602FB36D-17A3-4B7A-8B8E-65F0633081FC} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 	EndGlobalSection
 EndGlobal
