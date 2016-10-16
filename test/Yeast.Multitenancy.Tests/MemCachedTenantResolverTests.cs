@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
 using System.Threading;
 using Xunit;
 using Yeast.Multitenancy.Tests.Mocks;
@@ -16,9 +18,10 @@ namespace Yeast.Multitenancy.Tests
 
             using (var cache = new MemoryCache(new MemoryCacheOptions())) {
                 var resolver = new MockMemCachedTenantResolver(
+                    Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
                     cache,
                     new[] { testTenant },
-                    (tenant) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
+                    (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
                 );
                 resolvedContext = await resolver.ResolveAsync(MockHttpContext.WithHostname(testTenant.Identifier));
                 cachedContext = cache.Get<TenantContext<MockTenant>>(resolver.CacheKeyFor(testTenant));
@@ -33,17 +36,18 @@ namespace Yeast.Multitenancy.Tests
         public async void ShouldRestoreTenantContextFromCache()
         {
             var testTenant = new MockTenant("tenant1");
-            Func<MockTenant, TenantContext<MockTenant>> tenantContextFactory = (tenant) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider());
+            Func<MockTenant, IServiceCollection, TenantContext<MockTenant>> tenantContextFactory = (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider());
             TenantContext<MockTenant> resolvedContext, cachedContext;
 
             using (var cache = new MemoryCache(new MemoryCacheOptions()))
             {
                 var resolver = new MockMemCachedTenantResolver(
+                    Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
                     cache,
                     new[] { testTenant },
                     tenantContextFactory
                 );
-                cachedContext = tenantContextFactory(testTenant);
+                cachedContext = tenantContextFactory(testTenant, new ServiceCollection());
                 cache.Set(resolver.CacheKeyFor(testTenant), cachedContext);
                 resolvedContext = await resolver.ResolveAsync(MockHttpContext.WithHostname(testTenant.Identifier));
             }
@@ -59,10 +63,11 @@ namespace Yeast.Multitenancy.Tests
             TenantContext<MockTenant> firstResolvedContext, secondResolvedContext;
 
             using (var cache = new MemoryCache(new MemoryCacheOptions())) {
-                    var resolver = new MockMemCachedTenantResolver(
+                var resolver = new MockMemCachedTenantResolver(
+                    Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
                     cache,
                     new[] { testTenant },
-                    (tenant) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
+                    (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
                 );
                 firstResolvedContext = await resolver.ResolveAsync(MockHttpContext.WithHostname(testTenant.Identifier));
                 cache.Remove(resolver.CacheKeyFor(testTenant));
@@ -88,9 +93,10 @@ namespace Yeast.Multitenancy.Tests
             using (var cache = new MemoryCache(memCacheOptions))
             {
                 var resolver = new MockMemCachedTenantResolver(
+                    Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
                     cache,
                     new[] { testTenant },
-                    (tenant) => new TenantContext<MockTenant>(tenant, new MockServiceProvider())
+                    (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockServiceProvider())
                 )
                 {
                     CacheOptions = new MemoryCacheEntryOptions()

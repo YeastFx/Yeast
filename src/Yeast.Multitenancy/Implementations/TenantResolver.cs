@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Yeast.Core.Helpers;
 using Yeast.Core.Logging;
@@ -15,8 +17,14 @@ namespace Yeast.Multitenancy.Implementations
         where TTenant : ITenant
     {
         protected readonly ConcurrentDictionary<string, object> buildingLocks = new ConcurrentDictionary<string, object>();
+        protected readonly IEnumerable<TenantServicesFactory<TTenant>> _tenantServicesFactories;
 
         protected ILogger _logger = NullLogger.Instance;
+
+        public TenantResolver(IEnumerable<TenantServicesFactory<TTenant>> tenantServicesFactories)
+        {
+            _tenantServicesFactories = tenantServicesFactories;
+        }
 
         /// <summary>
         /// Identifies the tenant based on the <paramref name="context"/>
@@ -37,9 +45,10 @@ namespace Yeast.Multitenancy.Implementations
         /// Builds a new <see cref="TenantContext{TTenant}"/>
         /// </summary>
         /// <param name="tenant">The instance of <see cref="TTenant"/></param>
+        /// <param name="tenantServices">Tenant's services collection</param>
         /// <returns>Newly built <see cref="TenantContext{TTenant}"/></returns>
         /// <remarks>Your implementation have to keep the built context reference</remarks>
-        protected abstract TenantContext<TTenant> BuildTenantContext(TTenant tenant);
+        protected abstract TenantContext<TTenant> BuildTenantContext(TTenant tenant, IServiceCollection tenantServices);
 
         /// <summary>
         /// Resolves current tenant
@@ -76,7 +85,7 @@ namespace Yeast.Multitenancy.Implementations
                         }
                         else
                         {
-                            tenantContext = BuildTenantContext(tenant);
+                            tenantContext = BuildTenantContext(tenant, GetTenantServices(tenant));
                             Ensure.NotNull(tenantContext);
                             _logger.LogInformation("Tenant context for \"{identifier}\" created.", tenant.Identifier);
                         }
@@ -90,6 +99,15 @@ namespace Yeast.Multitenancy.Implementations
                 _logger.LogDebug("Unidentified tenant.");
                 return null;
             }
+        }
+
+        protected virtual IServiceCollection GetTenantServices(TTenant tenant) {
+            var tenantServices = new ServiceCollection();
+            tenantServices.AddSingleton(typeof(TTenant), tenant);
+            foreach (var provider in _tenantServicesFactories) {
+                provider(tenant, tenantServices);
+            }
+            return tenantServices;
         }
     }
 }

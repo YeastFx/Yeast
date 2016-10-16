@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using Yeast.Core.Helpers;
 
 namespace Yeast.Multitenancy.Implementations
@@ -10,7 +11,7 @@ namespace Yeast.Multitenancy.Implementations
         protected const string CachePrefix = "TenantCtx:";
         protected readonly IMemoryCache _cache;
 
-        public MemCachedTenantResolver(IMemoryCache cache)
+        public MemCachedTenantResolver(IEnumerable<TenantServicesFactory<TTenant>> tenantServicesFactories, IMemoryCache cache) :base(tenantServicesFactories)
         {
             Ensure.Argument.NotNull(cache, nameof(cache));
 

@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Yeast.Multitenancy.Implementations;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Yeast.Multitenancy.Tests.Mocks
 {
     public class MockMemCachedTenantResolver : MemCachedTenantResolver<MockTenant>
     {
-        private readonly Func<MockTenant, TenantContext<MockTenant>> _tenantContextFactory;
+        private readonly Func<MockTenant, IServiceCollection, TenantContext<MockTenant>> _tenantContextFactory;
         private readonly IEnumerable<MockTenant> _tenants;
 
         public MemoryCacheEntryOptions CacheOptions = new MemoryCacheEntryOptions();
 
-        public MockMemCachedTenantResolver(IMemoryCache cache, IEnumerable<MockTenant> tenants, Func<MockTenant, TenantContext<MockTenant>> tenantContextFactory) : base(cache)
+        public MockMemCachedTenantResolver(IEnumerable<TenantServicesFactory<MockTenant>> tenantServicesFactories, IMemoryCache cache, IEnumerable<MockTenant> tenants, Func<MockTenant, IServiceCollection, TenantContext<MockTenant>> tenantContextFactory) : base(tenantServicesFactories, cache)
         {
             _tenants = tenants;
             _tenantContextFactory = tenantContextFactory;
@@ -34,9 +35,9 @@ namespace Yeast.Multitenancy.Tests.Mocks
             });
         }
 
-        protected override TenantContext<MockTenant> BuildTenantContext(MockTenant tenant)
+        protected override TenantContext<MockTenant> BuildTenantContext(MockTenant tenant, IServiceCollection tenantServices)
         {
-            var tenantContext = _tenantContextFactory.Invoke(tenant);
+            var tenantContext = _tenantContextFactory.Invoke(tenant, tenantServices);
             CacheContext(tenantContext, CacheOptions);
             return tenantContext;
         }
