@@ -1,5 +1,16 @@
 {
-  "version": "1.0.0-*",
+  "title": "Yeast.Core",
+  "copyright": "Codinlab",
+  "version": "1.0.0-alpha",
+  "packOptions": {
+    "projectUrl": "https://github.com/YeastFx/Yeast",
+    "licenseUrl": "https://github.com/YeastFx/Yeast/raw/master/LICENSE",
+    "iconUrl": "https://yeastfx.github.io/NuGet/Yeast.png",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/YeastFx/Yeast.git"
+    }
+  },
 
   "dependencies": {
     "Microsoft.Extensions.Logging.Abstractions": "1.0.0",
