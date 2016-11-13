@@ -5,7 +5,7 @@ using Yeast.Core.Helpers;
 
 namespace Yeast.Multitenancy.Internal
 {
-    public class TenantResolverMiddleware<TTenant>
+    internal class TenantResolverMiddleware<TTenant>
         where TTenant : ITenant
     {
         private readonly RequestDelegate _next;
@@ -32,6 +32,9 @@ namespace Yeast.Multitenancy.Internal
             if (tenantContext != null)
             {
                 _logger.LogDebug("TenantContext Resolved.");
+
+                httpContext.SetTenantContext(tenantContext);
+
                 using (var scope = tenantContext.CreateServiceScope())
                 {
                     httpContext.RequestServices = scope.ServiceProvider;
