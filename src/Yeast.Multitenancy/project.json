@@ -1,7 +1,7 @@
 {
   "title": "Yeast.Multitenancy",
   "copyright": "Codinlab",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha3",
   "packOptions": {
     "projectUrl": "https://github.com/YeastFx/Yeast",
     "licenseUrl": "https://github.com/YeastFx/Yeast/raw/master/LICENSE",
