@@ -15,7 +15,7 @@ namespace Yeast.Multitenancy.Tests
     public class TenantResolverMiddlewareTests
     {
         [Fact]
-        public async Task ShouldReplaceRequestServicesWhenTenantResolved()
+        public async void ShouldReplaceRequestServicesWhenTenantResolved()
         {
             using (var server = CreateTestServer(
                 (appServices) => appServices.AddSingleton(new MockStatefullService() { State = "appRoot" }),
@@ -38,7 +38,7 @@ namespace Yeast.Multitenancy.Tests
         }
 
         [Fact]
-        public async Task ShouldCreateServiceScopePerRequest()
+        public async void ShouldCreateServiceScopePerRequest()
         {
             using (var server = CreateTestServer(
                 (appServices) => appServices.AddSingleton(new MockStatefullService()),
