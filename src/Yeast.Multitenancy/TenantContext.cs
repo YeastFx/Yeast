@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using Yeast.Core.Helpers;
 
 namespace Yeast.Multitenancy
@@ -16,6 +17,8 @@ namespace Yeast.Multitenancy
         public IServiceProvider Services {
             get { return _tenantServices; }
         }
+
+        internal RequestDelegate TenantPipeline { get; set; }
 
         public virtual void Dispose()
         {

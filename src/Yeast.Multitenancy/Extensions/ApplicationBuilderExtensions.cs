@@ -16,7 +16,24 @@ namespace Yeast.Multitenancy
             where TTenant :ITenant
         {
             Ensure.Argument.NotNull(app, nameof(app));
+
             return app.UseMiddleware<TenantResolverMiddleware<TTenant>>();
+        }
+
+        /// <summary>
+        /// Configures tenant's pipeline
+        /// </summary>
+        /// <typeparam name="TTenant">Type of tenant</typeparam>
+        /// <param name="rootApp">The <see cref="IApplicationBuilder"/> instance</param>
+        /// <param name="tenantConfiguration">The per-tenant configuration</param>
+        /// <returns>Reference to the root <see cref="IApplicationBuilder"/></returns>
+        public static IApplicationBuilder ConfigureTenant<TTenant>(this IApplicationBuilder rootApp, TenantApplicationConfiguration<TTenant> tenantConfiguration)
+            where TTenant : ITenant
+        {
+            Ensure.Argument.NotNull(rootApp, nameof(rootApp));
+            Ensure.Argument.NotNull(tenantConfiguration, nameof(tenantConfiguration));
+            
+            return rootApp.UseMiddleware<TenantPipelineMiddleware<TTenant>>(rootApp, tenantConfiguration);
         }
     }
 }
