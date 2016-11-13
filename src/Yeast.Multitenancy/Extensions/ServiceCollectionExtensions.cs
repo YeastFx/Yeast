@@ -61,13 +61,13 @@ namespace Yeast.Multitenancy
         }
 
         /// <summary>
-        /// Adds per tenant services
+        /// Configures per tenant services
         /// </summary>
         /// <typeparam name="TTenant">The type of the tenant</typeparam>
-        /// <param name="services">The <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to add the <paramref name="servicesFactory"/> to.</param>
-        /// <param name="servicesFactory">The funtion that adds per tenant services.</param>
-        /// <returns></returns>
-        public static IServiceCollection AddPerTenant<TTenant>(this IServiceCollection services, TenantServicesFactory<TTenant> servicesFactory)
+        /// <param name="services">The tenant's <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to configure.</param>
+        /// <param name="servicesFactory">The funtion that configures per tenant services.</param>
+        /// <returns>The tenent's <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection"/> reference</returns>
+        public static IServiceCollection ConfigureTenantServices<TTenant>(this IServiceCollection services, TenantServicesConfiguration<TTenant> servicesFactory)
             where TTenant : ITenant
         {
             Ensure.Argument.NotNull(services, nameof(services));

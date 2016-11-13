@@ -16,7 +16,7 @@ namespace Yeast.Multitenancy.Tests.Mocks
 
         public MemoryCacheEntryOptions CacheOptions = new MemoryCacheEntryOptions();
 
-        public MockMemCachedTenantResolver(IEnumerable<TenantServicesFactory<MockTenant>> tenantServicesFactories, IMemoryCache cache, IEnumerable<MockTenant> tenants, Func<MockTenant, IServiceCollection, TenantContext<MockTenant>> tenantContextFactory) : base(tenantServicesFactories, cache)
+        public MockMemCachedTenantResolver(IEnumerable<TenantServicesConfiguration<MockTenant>> tenantServicesFactories, IMemoryCache cache, IEnumerable<MockTenant> tenants, Func<MockTenant, IServiceCollection, TenantContext<MockTenant>> tenantContextFactory) : base(tenantServicesFactories, cache)
         {
             _tenants = tenants;
             _tenantContextFactory = tenantContextFactory;

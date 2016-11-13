@@ -18,7 +18,7 @@ namespace Yeast.Multitenancy.Tests
 
             using (var cache = new MemoryCache(new MemoryCacheOptions())) {
                 var resolver = new MockMemCachedTenantResolver(
-                    Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
+                    Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
                     cache,
                     new[] { testTenant },
                     (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
@@ -42,7 +42,7 @@ namespace Yeast.Multitenancy.Tests
             using (var cache = new MemoryCache(new MemoryCacheOptions()))
             {
                 var resolver = new MockMemCachedTenantResolver(
-                    Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
+                    Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
                     cache,
                     new[] { testTenant },
                     tenantContextFactory
@@ -64,7 +64,7 @@ namespace Yeast.Multitenancy.Tests
 
             using (var cache = new MemoryCache(new MemoryCacheOptions())) {
                 var resolver = new MockMemCachedTenantResolver(
-                    Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
+                    Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
                     cache,
                     new[] { testTenant },
                     (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
@@ -93,7 +93,7 @@ namespace Yeast.Multitenancy.Tests
             using (var cache = new MemoryCache(memCacheOptions))
             {
                 var resolver = new MockMemCachedTenantResolver(
-                    Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
+                    Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
                     cache,
                     new[] { testTenant },
                     (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockServiceProvider())

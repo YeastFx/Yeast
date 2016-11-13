@@ -11,7 +11,7 @@ namespace Yeast.Multitenancy.Implementations
         protected const string CachePrefix = "TenantCtx:";
         protected readonly IMemoryCache _cache;
 
-        public MemCachedTenantResolver(IEnumerable<TenantServicesFactory<TTenant>> tenantServicesFactories, IMemoryCache cache) :base(tenantServicesFactories)
+        public MemCachedTenantResolver(IEnumerable<TenantServicesConfiguration<TTenant>> tenantServicesFactories, IMemoryCache cache) :base(tenantServicesFactories)
         {
             Ensure.Argument.NotNull(cache, nameof(cache));
 

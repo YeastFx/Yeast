@@ -13,7 +13,7 @@ namespace Yeast.Multitenancy.Tests
         public async void ShouldThrowOnNullHttpContext()
         {
             var resolver = new MockTenantResolver(
-                Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
+                Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
                 new[] { new MockTenant("tenant1"), new MockTenant("tenant2") },
                 (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
             );
@@ -24,7 +24,7 @@ namespace Yeast.Multitenancy.Tests
         public async void ShouldReturnNullTenantContextIfUnresolved()
         {
             var resolver = new MockTenantResolver(
-                Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
+                Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
                 new[] { new MockTenant("tenant1") },
                 (tenant, tenantServices) => new TenantContext<MockTenant>(tenant, new MockIServiceProvider())
             );
@@ -38,7 +38,7 @@ namespace Yeast.Multitenancy.Tests
         {
             var buildCount = 0;
             var resolver = new MockTenantResolver(
-                Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
+                Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
                 new[] { new MockTenant("tenant1") },
                 (tenant, tenantServices) =>
                 {
@@ -55,7 +55,7 @@ namespace Yeast.Multitenancy.Tests
         {
             IServiceCollection providedServices = null;
             var resolver = new MockTenantResolver(
-                Enumerable.Empty<TenantServicesFactory<MockTenant>>(),
+                Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
                 new[] { new MockTenant("tenant1") },
                 (tenant, tenantServices) =>
                 {

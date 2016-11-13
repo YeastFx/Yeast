@@ -17,11 +17,11 @@ namespace Yeast.Multitenancy.Implementations
         where TTenant : ITenant
     {
         protected readonly ConcurrentDictionary<string, object> buildingLocks = new ConcurrentDictionary<string, object>();
-        protected readonly IEnumerable<TenantServicesFactory<TTenant>> _tenantServicesFactories;
+        protected readonly IEnumerable<TenantServicesConfiguration<TTenant>> _tenantServicesFactories;
 
         protected ILogger _logger = NullLogger.Instance;
 
-        public TenantResolver(IEnumerable<TenantServicesFactory<TTenant>> tenantServicesFactories)
+        public TenantResolver(IEnumerable<TenantServicesConfiguration<TTenant>> tenantServicesFactories)
         {
             _tenantServicesFactories = tenantServicesFactories;
         }

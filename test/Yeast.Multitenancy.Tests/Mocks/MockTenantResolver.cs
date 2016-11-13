@@ -14,7 +14,7 @@ namespace Yeast.Multitenancy.Tests.Mocks
         private readonly IEnumerable<MockTenant> _tenants;
         private readonly IDictionary<string, TenantContext<MockTenant>> _tenantContexts = new Dictionary<string, TenantContext<MockTenant>>();
 
-        public MockTenantResolver(IEnumerable<TenantServicesFactory<MockTenant>> tenantServicesFactories, IEnumerable<MockTenant> tenants, Func<MockTenant, IServiceCollection, TenantContext<MockTenant>> tenantContextFactory)
+        public MockTenantResolver(IEnumerable<TenantServicesConfiguration<MockTenant>> tenantServicesFactories, IEnumerable<MockTenant> tenants, Func<MockTenant, IServiceCollection, TenantContext<MockTenant>> tenantContextFactory)
             : base(tenantServicesFactories)
         {
             _tenants = tenants;
