@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26127.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}"
 EndProject
@@ -16,13 +16,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{50F6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yeast.Multitenancy", "src\Yeast.Multitenancy\Yeast.Multitenancy.xproj", "{0C78370B-1C10-49A8-82AF-764DBB3AD285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Multitenancy", "src\Yeast.Multitenancy\Yeast.Multitenancy.csproj", "{0C78370B-1C10-49A8-82AF-764DBB3AD285}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yeast.Core", "src\Yeast.Core\Yeast.Core.xproj", "{925882EC-C97C-4123-B9C8-B012DE05C2AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Core", "src\Yeast.Core\Yeast.Core.csproj", "{925882EC-C97C-4123-B9C8-B012DE05C2AE}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Yeast.Multitenancy.Tests", "test\Yeast.Multitenancy.Tests\Yeast.Multitenancy.Tests.xproj", "{AC00AF2E-0462-4242-AD6D-75DEBC379823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Multitenancy.Tests", "test\Yeast.Multitenancy.Tests\Yeast.Multitenancy.Tests.csproj", "{AC00AF2E-0462-4242-AD6D-75DEBC379823}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MultitenantApp", "samples\MultitenantApp\MultitenantApp.xproj", "{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultitenantApp", "samples\MultitenantApp\MultitenantApp.csproj", "{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
