@@ -67,7 +67,7 @@ namespace Yeast.Multitenancy.Internal
         {
             var branchBuilder = _rootApp.New();
 
-            _configuration(branchBuilder, tenantContext.Tenant);
+            _configuration(branchBuilder, tenantContext);
 
             return branchBuilder.Build();
         }

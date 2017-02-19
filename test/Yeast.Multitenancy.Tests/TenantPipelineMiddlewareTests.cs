@@ -71,8 +71,8 @@ namespace Yeast.Multitenancy.Tests
                                 .BuildServiceProvider()
                         )
                 ),
-                (tenantApp, tenant) => {
-                    counters[tenant.Identifier]++;
+                (tenantApp, tenantCtx) => {
+                    counters[tenantCtx.Tenant.Identifier]++;
                 }
             ))
             {
@@ -104,8 +104,8 @@ namespace Yeast.Multitenancy.Tests
                                 .BuildServiceProvider()
                         )
                 ),
-                (tenantApp, tenant) => {
-                    counters[tenant.Identifier]++;
+                (tenantApp, tenantCtx) => {
+                    counters[tenantCtx.Tenant.Identifier]++;
                 }
             ))
             {
@@ -117,7 +117,7 @@ namespace Yeast.Multitenancy.Tests
         }
 
         #region Helper functions
-        private static TestServer CreateTestServer(ITenantResolver<MockTenant> tenantResolver, Action<IApplicationBuilder, MockTenant> additionalTenantConfiguration = null)
+        private static TestServer CreateTestServer(ITenantResolver<MockTenant> tenantResolver, Action<IApplicationBuilder, TenantContext<MockTenant>> additionalTenantConfiguration = null)
         {
             return new TestServer(
                 new WebHostBuilder()
@@ -130,16 +130,16 @@ namespace Yeast.Multitenancy.Tests
                         app =>
                         {
                             app.UseMultitenancy<MockTenant>();
-                            app.ConfigureTenant<MockTenant>((tenantApp, tenant) =>
+                            app.ConfigureTenant<MockTenant>((tenantApp, tenantCtx) =>
                             {
                                 if (additionalTenantConfiguration != null)
                                 {
-                                    additionalTenantConfiguration.Invoke(tenantApp, tenant);
+                                    additionalTenantConfiguration.Invoke(tenantApp, tenantCtx);
                                 }
                                 tenantApp.Run(
                                     async ctx =>
                                     {
-                                        await ctx.Response.WriteAsync(tenant.Identifier);
+                                        await ctx.Response.WriteAsync(tenantCtx.Tenant.Identifier);
                                     }
                                 );
                             });
