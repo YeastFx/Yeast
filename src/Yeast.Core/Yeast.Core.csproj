@@ -3,7 +3,7 @@
     <Copyright>Codinlab</Copyright>
     <AssemblyTitle>Yeast.Core</AssemblyTitle>
     <VersionPrefix>1.0.0-alpha</VersionPrefix>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <AssemblyName>Yeast.Core</AssemblyName>
     <PackageId>Yeast.Core</PackageId>
     <PackageIconUrl>https://yeastfx.github.io/NuGet/Yeast.png</PackageIconUrl>

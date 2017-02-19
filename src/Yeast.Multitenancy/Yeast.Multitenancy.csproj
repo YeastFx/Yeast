@@ -3,7 +3,7 @@
     <Copyright>Codinlab</Copyright>
     <AssemblyTitle>Yeast.Multitenancy</AssemblyTitle>
     <VersionPrefix>1.0.0-alpha3</VersionPrefix>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <AssemblyName>Yeast.Multitenancy</AssemblyName>
     <PackageId>Yeast.Multitenancy</PackageId>
     <PackageIconUrl>https://yeastfx.github.io/NuGet/Yeast.png</PackageIconUrl>
