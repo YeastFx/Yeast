@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26127.3
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}"
 EndProject
@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{50F67FA6-ED77-4214-9ED0-FA6458B154B0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Multitenancy", "src\Yeast.Multitenancy\Yeast.Multitenancy.csproj", "{0C78370B-1C10-49A8-82AF-764DBB3AD285}"
@@ -24,7 +22,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Core", "src\Yeast.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Multitenancy.Tests", "test\Yeast.Multitenancy.Tests\Yeast.Multitenancy.Tests.csproj", "{AC00AF2E-0462-4242-AD6D-75DEBC379823}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultitenantApp", "samples\MultitenantApp\MultitenantApp.csproj", "{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +41,6 @@ Global
 		{AC00AF2E-0462-4242-AD6D-75DEBC379823}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC00AF2E-0462-4242-AD6D-75DEBC379823}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC00AF2E-0462-4242-AD6D-75DEBC379823}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +49,5 @@ Global
 		{0C78370B-1C10-49A8-82AF-764DBB3AD285} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{925882EC-C97C-4123-B9C8-B012DE05C2AE} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{AC00AF2E-0462-4242-AD6D-75DEBC379823} = {F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}
-		{D642B877-DDB0-4BBD-A6D5-DDC24FE67C22} = {50F67FA6-ED77-4214-9ED0-FA6458B154B0}
 	EndGlobalSection
 EndGlobal
