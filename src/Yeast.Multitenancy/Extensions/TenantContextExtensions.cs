@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Yeast.Core.Helpers;
+using System.Diagnostics;
 
 namespace Yeast.Multitenancy
 {
@@ -12,7 +12,7 @@ namespace Yeast.Multitenancy
         /// <returns></returns>
         public static IServiceScope CreateServiceScope(this TenantContext tenantContext)
         {
-            Ensure.Argument.NotNull(tenantContext, nameof(tenantContext));
+            Debug.Assert(tenantContext != null, $"{nameof(tenantContext)} must not be null");
 
             return tenantContext.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
         }

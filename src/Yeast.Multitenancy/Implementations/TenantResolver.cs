@@ -2,10 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Yeast.Core.Helpers;
 
 namespace Yeast.Multitenancy.Implementations
 {
@@ -57,7 +57,10 @@ namespace Yeast.Multitenancy.Implementations
         /// <returns>Resolved TenantContext</returns>
         public async Task<TenantContext<TTenant>> ResolveAsync(HttpContext context)
         {
-            Ensure.Argument.NotNull(context, nameof(context));
+            if(context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
 
             var tenant = await IdentifyTenantAsync(context);
 
@@ -86,7 +89,12 @@ namespace Yeast.Multitenancy.Implementations
                         else
                         {
                             tenantContext = BuildTenantContext(tenant, GetTenantServices(tenant));
-                            Ensure.NotNull(tenantContext);
+                            
+                            if(tenantContext == null)
+                            {
+                                throw new InvalidOperationException("Tenant context build failed.");
+                            }
+
                             _logger.LogInformation("Tenant context for \"{identifier}\" created.", tenant.Identifier);
                         }
                     }

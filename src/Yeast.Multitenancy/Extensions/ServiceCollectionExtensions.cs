@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using Yeast.Core.Helpers;
 
 namespace Yeast.Multitenancy
 {
@@ -16,8 +15,15 @@ namespace Yeast.Multitenancy
         public static IServiceCollection AddMultitenancy<TTenant>(this IServiceCollection services, Func<IServiceProvider, ITenantResolver<TTenant>> resolverFactory)
             where TTenant : ITenant
         {
-            Ensure.Argument.NotNull(services, nameof(services));
-            Ensure.Argument.NotNull(resolverFactory, nameof(resolverFactory));
+            if (services == null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
+
+            if (resolverFactory == null)
+            {
+                throw new ArgumentNullException(nameof(resolverFactory));
+            }
 
             services.AddSingleton(resolverFactory);
 
@@ -34,8 +40,16 @@ namespace Yeast.Multitenancy
         public static IServiceCollection AddMultitenancy<TTenant>(this IServiceCollection services, ITenantResolver<TTenant> resolverInstance)
             where TTenant : ITenant
         {
-            Ensure.Argument.NotNull(services, nameof(services));
-            Ensure.Argument.NotNull(resolverInstance, nameof(resolverInstance));
+            if (services == null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
+
+            if (resolverInstance == null)
+            {
+                throw new ArgumentNullException(nameof(resolverInstance));
+            }
+
 
             services.AddSingleton(resolverInstance);
 
@@ -53,7 +67,10 @@ namespace Yeast.Multitenancy
             where TResolver : class, ITenantResolver<TTenant>
             where TTenant : ITenant
         {
-            Ensure.Argument.NotNull(services, nameof(services));
+            if (services == null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
 
             services.AddSingleton<ITenantResolver<TTenant>, TResolver>();
 
@@ -70,8 +87,15 @@ namespace Yeast.Multitenancy
         public static IServiceCollection ConfigureTenantServices<TTenant>(this IServiceCollection services, TenantServicesConfiguration<TTenant> servicesFactory)
             where TTenant : ITenant
         {
-            Ensure.Argument.NotNull(services, nameof(services));
-            Ensure.Argument.NotNull(servicesFactory, nameof(servicesFactory));
+            if (services == null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
+
+            if (servicesFactory == null)
+            {
+                throw new ArgumentNullException(nameof(servicesFactory));
+            }
 
             services.AddSingleton(servicesFactory);
 

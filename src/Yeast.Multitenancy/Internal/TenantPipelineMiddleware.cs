@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using Yeast.Core.Helpers;
 
 namespace Yeast.Multitenancy.Internal
 {
@@ -20,10 +19,6 @@ namespace Yeast.Multitenancy.Internal
             IApplicationBuilder rootApp,
             TenantApplicationConfiguration<TTenant> configuration)
         {
-            Ensure.Argument.NotNull(next, nameof(next));
-            Ensure.Argument.NotNull(rootApp, nameof(rootApp));
-            Ensure.Argument.NotNull(configuration, nameof(configuration));
-
             _next = next;
             _rootApp = rootApp;
             _configuration = configuration;
@@ -31,8 +26,6 @@ namespace Yeast.Multitenancy.Internal
 
         public async Task Invoke(HttpContext context)
         {
-            Ensure.Argument.NotNull(context, nameof(context));
-
             var tenantContext = context.GetTenantContext<TTenant>();
 
             if (tenantContext != null)

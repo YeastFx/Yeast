@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
-using Yeast.Core.Helpers;
 
 namespace Yeast.Multitenancy
 {
@@ -10,7 +9,11 @@ namespace Yeast.Multitenancy
 
         public TenantContext(IServiceProvider tenantServices)
         {
-            Ensure.Argument.NotNull(tenantServices, nameof(tenantServices));
+            if (tenantServices == null)
+            {
+                throw new ArgumentNullException(nameof(tenantServices));
+            }
+
             _tenantServices = tenantServices;
         }
 
@@ -36,7 +39,10 @@ namespace Yeast.Multitenancy
         public TenantContext(TTenant tenant, IServiceProvider tenantServices)
             : base(tenantServices)
         {
-            Ensure.Argument.NotNull(tenant, nameof(tenant));
+            if(tenant == null)
+            {
+                throw new ArgumentNullException(nameof(tenant));
+            }
 
             _tenant = tenant;
         }

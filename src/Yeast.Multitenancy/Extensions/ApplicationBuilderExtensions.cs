@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Yeast.Core.Helpers;
+using System;
 using Yeast.Multitenancy.Internal;
 
 namespace Yeast.Multitenancy
@@ -15,7 +15,10 @@ namespace Yeast.Multitenancy
         public static IApplicationBuilder UseMultitenancy<TTenant>(this IApplicationBuilder app)
             where TTenant :ITenant
         {
-            Ensure.Argument.NotNull(app, nameof(app));
+            if (app == null)
+            {
+                throw new ArgumentNullException(nameof(app));
+            }
 
             return app.UseMiddleware<TenantResolverMiddleware<TTenant>>();
         }
@@ -30,8 +33,15 @@ namespace Yeast.Multitenancy
         public static IApplicationBuilder ConfigureTenant<TTenant>(this IApplicationBuilder rootApp, TenantApplicationConfiguration<TTenant> tenantConfiguration)
             where TTenant : ITenant
         {
-            Ensure.Argument.NotNull(rootApp, nameof(rootApp));
-            Ensure.Argument.NotNull(tenantConfiguration, nameof(tenantConfiguration));
+            if (rootApp == null)
+            {
+                throw new ArgumentNullException(nameof(rootApp));
+            }
+
+            if (tenantConfiguration == null)
+            {
+                throw new ArgumentNullException(nameof(tenantConfiguration));
+            }
             
             return rootApp.UseMiddleware<TenantPipelineMiddleware<TTenant>>(rootApp, tenantConfiguration);
         }

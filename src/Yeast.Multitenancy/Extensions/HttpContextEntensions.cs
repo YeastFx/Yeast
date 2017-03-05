@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Yeast.Core.Helpers;
+using System.Diagnostics;
 
 namespace Yeast.Multitenancy
 {
@@ -19,8 +19,8 @@ namespace Yeast.Multitenancy
         internal static void SetTenantContext<TTenant>(this HttpContext httpContext, TenantContext<TTenant> tenantContext)
             where TTenant : ITenant
         {
-            Ensure.Argument.NotNull(httpContext, nameof(httpContext));
-            Ensure.Argument.NotNull(tenantContext, nameof(tenantContext));
+            Debug.Assert(httpContext != null, $"{nameof(httpContext)} must not be null");
+            Debug.Assert(tenantContext != null, $"{nameof(tenantContext)} must not be null");
 
             httpContext.Items[TenantContextKey] = tenantContext;
         }
@@ -33,7 +33,7 @@ namespace Yeast.Multitenancy
         /// <returns>The current <see cref="TenantContext{TTenant}"/></returns>
         public static TenantContext<TTenant> GetTenantContext<TTenant>(this HttpContext httpContext)
         {
-            Ensure.Argument.NotNull(httpContext, nameof(httpContext));
+            Debug.Assert(httpContext != null, $"{nameof(httpContext)} must not be null");
 
             object tenantContext;
             if (httpContext.Items.TryGetValue(TenantContextKey, out tenantContext))
@@ -52,7 +52,7 @@ namespace Yeast.Multitenancy
         /// <returns>The current tenant</returns>
         public static TTenant GetTenant<TTenant>(this HttpContext httpContext)
         {
-            Ensure.Argument.NotNull(httpContext, nameof(httpContext));
+            Debug.Assert(httpContext != null, $"{nameof(httpContext)} must not be null");
 
             var tenantContext = GetTenantContext<TTenant>(httpContext);
 

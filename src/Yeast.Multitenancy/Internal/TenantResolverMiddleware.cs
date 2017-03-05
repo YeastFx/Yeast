@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using Yeast.Core.Helpers;
 
 namespace Yeast.Multitenancy.Internal
 {
@@ -13,17 +13,13 @@ namespace Yeast.Multitenancy.Internal
 
         public TenantResolverMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
-            Ensure.Argument.NotNull(next, nameof(next));
-            Ensure.Argument.NotNull(loggerFactory, nameof(loggerFactory));
-
             _next = next;
             _logger = loggerFactory.CreateLogger<TenantResolverMiddleware<TTenant>>();
         }
 
         public async Task Invoke(HttpContext httpContext, ITenantResolver<TTenant> tenantResolver)
         {
-            Ensure.Argument.NotNull(httpContext, nameof(httpContext));
-            Ensure.Argument.NotNull(tenantResolver, nameof(tenantResolver));
+            Debug.Assert(tenantResolver != null, $"{nameof(tenantResolver)} must not be null.");
 
             _logger.LogDebug("Resolving TenantContext using {loggerType}.", tenantResolver.GetType().Name);
 
