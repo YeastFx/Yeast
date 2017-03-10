@@ -2,6 +2,10 @@
 {
     public abstract class ModuleInfo
     {
-        public abstract string Name { get; }
+        public string Name {
+            get {
+                return GetType().Name;
+            }
+        }
     }
 }

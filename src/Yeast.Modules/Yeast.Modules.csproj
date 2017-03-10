@@ -12,4 +12,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.1" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yeast.Modules.Abstractions\Yeast.Modules.Abstractions.csproj" />
+  </ItemGroup>
 </Project>
