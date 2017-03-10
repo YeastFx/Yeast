@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Loader;
 
 namespace Yeast.Modules
@@ -11,31 +13,37 @@ namespace Yeast.Modules
     /// </summary>
     public class ModuleLoader
     {
-        private const string DefaultModulesDirectory = "Modules";
+        protected readonly AssemblyLoadContext _assemblyLoadContext;
 
         private readonly ILogger _logger;
+        private readonly HashSet<LoadedModule> _loadedModules;
 
         /// <summary>
         /// Creates a new instance without Logging
         /// </summary>
-        public ModuleLoader() {
-            _logger = NullLogger.Instance;
-        }
+        public ModuleLoader() : this(null) { }
 
         /// <summary>
         /// Creates a new instance with Logging
         /// </summary>
         public ModuleLoader(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<ModuleLoader>();
+            _logger = (ILogger)loggerFactory?.CreateLogger<ModuleLoader>() ?? NullLogger.Instance;
+            _assemblyLoadContext = AssemblyLoadContext.Default;
+            _loadedModules = new HashSet<LoadedModule>();
         }
 
         /// <summary>
         /// Loads all modules from a module directory path
         /// </summary>
         /// <param name="modulesDirectory">The modules directory path</param>
-        public void LoadModules(string modulesDirectory = DefaultModulesDirectory)
+        public void LoadModules(string modulesDirectory)
         {
+            if(string.IsNullOrEmpty(modulesDirectory))
+            {
+                throw new ArgumentException($"{nameof(modulesDirectory)} cannot be null or empty.");
+            }
+
             if (Directory.Exists(modulesDirectory))
             {
                 foreach (var modulePath in Directory.EnumerateDirectories(modulesDirectory))
@@ -44,10 +52,11 @@ namespace Yeast.Modules
                 }
             }
         }
+
         /// <summary>
         /// Loads individual module from its directory path
         /// </summary>
-        /// <param name="moduleDirectory">The module directory path</param>
+        /// <param name="moduleDirectory">The module directory path.</param>
         public void LoadModule(string moduleDirectory)
         {
             if (Directory.Exists(moduleDirectory))
@@ -56,30 +65,34 @@ namespace Yeast.Modules
             }
         }
 
+        /// <summary>
+        /// Gets a <see cref="LoadedModule"/> by its Name
+        /// </summary>
+        /// <param name="moduleName">The module name</param>
+        /// <returns>The <see cref="LoadedModule"/> instance if module was loaded.</returns>
+        public LoadedModule GetLoadedModuleByName(string moduleName)
+        {
+            return _loadedModules.FirstOrDefault(loadedModule => loadedModule.Name == moduleName);
+        }
+
         private void LoadModuleInternal(string modulePath)
         {
-            var moduleName = Path.GetDirectoryName(modulePath);
+            var moduleName = new DirectoryInfo(modulePath).Name;
             _logger.LogDebug($"Loadding module {moduleName}...");
-            var binPath = Path.Combine(modulePath, "bin");
-            if (!Directory.Exists(binPath))
-            {
-                // Nothing to load
-                return;
-            }
-            foreach (var assemblyFile in Directory.EnumerateFiles(binPath, "*.dll", SearchOption.AllDirectories))
+            foreach (var assemblyFile in Directory.EnumerateFiles(modulePath, $"{moduleName}.dll", SearchOption.AllDirectories))
             {
                 try
                 {
                     var assemblyPath = Path.GetFullPath(assemblyFile);
-                    var assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath);
-
+                    var assembly = _assemblyLoadContext.LoadFromAssemblyPath(assemblyPath);
+                    _loadedModules.Add(new LoadedModule(modulePath, assembly));
+                    break;
                 }
                 catch (Exception exp)
                 {
                     _logger.LogWarning($"Loadding file {assemblyFile} failed.{Environment.NewLine}{exp.Message}");
                 }
             }
-
         }
     }
 }
