@@ -12,9 +12,9 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
     <PackageReference Include="xunit" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Yeast.Multitenancy\Yeast.Multitenancy.csproj" />
