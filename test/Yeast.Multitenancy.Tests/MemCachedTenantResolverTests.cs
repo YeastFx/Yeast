@@ -107,10 +107,10 @@ namespace Yeast.Multitenancy.Tests
                 resolvedContext = await resolver.ResolveAsync(MockHttpContext.WithHostname(testTenant.Identifier));
                 // Expires the cached context
                 testClock.Add(TimeSpan.FromMinutes(6));
-                Thread.Sleep(TimeSpan.FromMilliseconds(20));
+                Thread.Sleep(TimeSpan.FromMilliseconds(100));
                 // Ensures that context was removed from cache and triggers the cache eviction process
                 Assert.Null(cache.Get(resolver.CacheKeyFor(testTenant)));
-                Thread.Sleep(TimeSpan.FromMilliseconds(20));
+                Thread.Sleep(TimeSpan.FromMilliseconds(100));
             }
 
             Assert.NotNull(resolvedContext);

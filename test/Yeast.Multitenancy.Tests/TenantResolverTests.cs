@@ -36,6 +36,7 @@ namespace Yeast.Multitenancy.Tests
         [Fact]
         public void ShouldNotBuildSameTenantContextConcurrently()
         {
+            // Arrange
             var buildCount = 0;
             var resolver = new MockTenantResolver(
                 Enumerable.Empty<TenantServicesConfiguration<MockTenant>>(),
@@ -46,7 +47,11 @@ namespace Yeast.Multitenancy.Tests
                     return new TenantContext<MockTenant>(tenant, new MockIServiceProvider());
                 }
             );
-            Parallel.For(0, 10, async (idx) => await resolver.ResolveAsync(MockHttpContext.WithHostname("tenant1")));
+
+            // Act
+            Parallel.For(0, 10, (idx) => resolver.ResolveAsync(MockHttpContext.WithHostname("tenant1")).Wait());
+
+            // Assert
             Assert.Equal(1, buildCount);
         }
 
