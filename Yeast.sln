@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleA", "test\Modules\Mod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleB", "test\Modules\ModuleB\ModuleB.csproj", "{DE9D30B4-F8B5-4397-B18B-990D946F23CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Modules.Abstractions", "src\Yeast.Modules.Abstractions\Yeast.Modules.Abstractions.csproj", "{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,18 @@ Global
 		{DE9D30B4-F8B5-4397-B18B-990D946F23CF}.Release|x64.Build.0 = Release|Any CPU
 		{DE9D30B4-F8B5-4397-B18B-990D946F23CF}.Release|x86.ActiveCfg = Release|Any CPU
 		{DE9D30B4-F8B5-4397-B18B-990D946F23CF}.Release|x86.Build.0 = Release|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Debug|x64.Build.0 = Debug|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Debug|x86.Build.0 = Debug|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Release|x64.ActiveCfg = Release|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Release|x64.Build.0 = Release|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Release|x86.ActiveCfg = Release|Any CPU
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,5 +152,6 @@ Global
 		{A5110279-498A-4DFE-A616-9A6688269570} = {F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}
 		{9A03E7E4-3B6D-41A7-9E05-CA03FFD819B2} = {A5110279-498A-4DFE-A616-9A6688269570}
 		{DE9D30B4-F8B5-4397-B18B-990D946F23CF} = {A5110279-498A-4DFE-A616-9A6688269570}
+		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 	EndGlobalSection
 EndGlobal
