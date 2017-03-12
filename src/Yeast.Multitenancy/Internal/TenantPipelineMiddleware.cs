@@ -60,7 +60,13 @@ namespace Yeast.Multitenancy.Internal
         {
             var branchBuilder = _rootApp.New();
 
+            // replace application services
+            branchBuilder.ApplicationServices = tenantContext.Services;
+
             _configuration(branchBuilder, tenantContext);
+
+            // register root pipeline at the end of the tenant branch
+            branchBuilder.Run(_next);
 
             return branchBuilder.Build();
         }
