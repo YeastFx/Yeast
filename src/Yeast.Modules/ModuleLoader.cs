@@ -11,7 +11,7 @@ namespace Yeast.Modules
     /// <summary>
     /// Loads assemblies from module directories
     /// </summary>
-    public class ModuleLoader
+    public class ModuleLoader : IModuleLoader
     {
         private readonly ILogger _logger;
         private readonly HashSet<LoadedModule> _loadedModules;
@@ -30,10 +30,7 @@ namespace Yeast.Modules
             _loadedModules = new HashSet<LoadedModule>();
         }
 
-        /// <summary>
-        /// Loads all modules from a module directory path
-        /// </summary>
-        /// <param name="modulesDirectory">The modules directory path</param>
+        /// <inheritdoc />
         public void LoadModules(string modulesDirectory)
         {
             if(string.IsNullOrEmpty(modulesDirectory))
@@ -50,10 +47,7 @@ namespace Yeast.Modules
             }
         }
 
-        /// <summary>
-        /// Loads individual module from its directory path
-        /// </summary>
-        /// <param name="moduleDirectory">The module directory path.</param>
+        /// <inheritdoc />
         public void LoadModule(string moduleDirectory)
         {
             if (Directory.Exists(moduleDirectory))
@@ -62,11 +56,7 @@ namespace Yeast.Modules
             }
         }
 
-        /// <summary>
-        /// Gets a <see cref="LoadedModule"/> by its Name
-        /// </summary>
-        /// <param name="moduleName">The module name</param>
-        /// <returns>The <see cref="LoadedModule"/> instance if module was loaded.</returns>
+        /// <inheritdoc />
         public LoadedModule GetLoadedModuleByName(string moduleName)
         {
             return _loadedModules.FirstOrDefault(loadedModule => loadedModule.Name == moduleName);

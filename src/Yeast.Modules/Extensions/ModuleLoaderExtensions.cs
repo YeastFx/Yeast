@@ -7,7 +7,7 @@
         /// </summary>
         /// <param name="moduleName">Module name to test</param>
         /// <returns>True if module was loaded, otherwise False</returns>
-        public static bool IsLoaded(this ModuleLoader moduleLoader, string moduleName)
+        public static bool IsLoaded(this IModuleLoader moduleLoader, string moduleName)
         {
             return moduleLoader.GetLoadedModuleByName(moduleName) != null;
         }
