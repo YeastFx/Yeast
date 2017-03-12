@@ -57,7 +57,7 @@ namespace Yeast.Modules
         }
 
         /// <inheritdoc />
-        public LoadedModule GetLoadedModuleByName(string moduleName)
+        public ILoadedModule GetLoadedModuleByName(string moduleName)
         {
             return _loadedModules.FirstOrDefault(loadedModule => loadedModule.Name == moduleName);
         }

@@ -7,7 +7,7 @@ namespace ModuleA
 {
     public class ModuleAStartup : IStartup
     {
-        public void Configure(IApplicationBuilder builder, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder builder)
         {
             throw new NotImplementedException();
         }

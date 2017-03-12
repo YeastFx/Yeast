@@ -6,7 +6,7 @@ using Yeast.Modules.Abstractions;
 
 namespace Yeast.Modules
 {
-    public class LoadedModule
+    public class LoadedModule : ILoadedModule
     {
         private readonly string _modulePath;
         private readonly Assembly _assembly;

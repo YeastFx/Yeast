@@ -18,8 +18,7 @@ namespace Yeast.Modules.Abstractions
         /// <summary>
         /// Method used to configure the request pipeline
         /// </summary>
-        /// <param name="builder"><see cref="IApplicationBuilder"/> instance</param>
-        /// <param name="serviceProvider">Application <see cref="IServiceProvider"/></param>
-        void Configure(IApplicationBuilder builder, IServiceProvider serviceProvider);
+        /// <param name="builder">The <see cref="IApplicationBuilder"/> instance</param>
+        void Configure(IApplicationBuilder builder);
     }
 }

@@ -3,11 +3,11 @@
     public interface IModuleLoader
     {
         /// <summary>
-        /// Gets a <see cref="LoadedModule"/> by its Name
+        /// Gets an <see cref="ILoadedModule"/> by its Name
         /// </summary>
         /// <param name="moduleName">The module name</param>
-        /// <returns>The <see cref="LoadedModule"/> instance if module was loaded.</returns>
-        LoadedModule GetLoadedModuleByName(string moduleName);
+        /// <returns>The <see cref="ILoadedModule"/> instance if module was loaded.</returns>
+        ILoadedModule GetLoadedModuleByName(string moduleName);
 
         /// <summary>
         /// Loads individual module from its directory path
