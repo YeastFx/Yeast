@@ -16,13 +16,14 @@ namespace Yeast.Modules
         /// Configures enabled modules
         /// </summary>
         /// <param name="builder">The <see cref="IApplicationBuilder"/> instance</param>
-        void ConfigureModules(IApplicationBuilder builder);
+        /// <returns>The <see cref="IApplicationBuilder"/> instance</returns>
+        IApplicationBuilder ConfigureModules(IApplicationBuilder builder);
 
         /// <summary>
         /// Configures enabled modules services
         /// </summary>
         /// <param name="services">The application <see cref="IServiceCollection"/></param>
-        void ConfigureModulesServices(IServiceCollection services);
+        IServiceCollection ConfigureModulesServices(IServiceCollection services);
 
         /// <summary>
         /// Enables listed modules

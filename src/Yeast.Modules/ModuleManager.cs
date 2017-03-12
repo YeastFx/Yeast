@@ -48,21 +48,23 @@ namespace Yeast.Modules
         }
 
         /// <inheritdoc />
-        public void ConfigureModulesServices(IServiceCollection services)
+        public IServiceCollection ConfigureModulesServices(IServiceCollection services)
         {
             foreach(var startup in GetStartups())
             {
                 startup.ConfigureServices(services);
             }
+            return services;
         }
 
         /// <inheritdoc />
-        public void ConfigureModules(IApplicationBuilder builder)
+        public IApplicationBuilder ConfigureModules(IApplicationBuilder builder)
         {
             foreach (var startup in GetStartups())
             {
                 startup.Configure(builder);
             }
+            return builder;
         }
 
         private IEnumerable<IStartup> GetStartups()
