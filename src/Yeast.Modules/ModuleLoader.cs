@@ -13,8 +13,6 @@ namespace Yeast.Modules
     /// </summary>
     public class ModuleLoader
     {
-        protected readonly AssemblyLoadContext _assemblyLoadContext;
-
         private readonly ILogger _logger;
         private readonly HashSet<LoadedModule> _loadedModules;
 
@@ -29,7 +27,6 @@ namespace Yeast.Modules
         public ModuleLoader(ILoggerFactory loggerFactory)
         {
             _logger = (ILogger)loggerFactory?.CreateLogger<ModuleLoader>() ?? NullLogger.Instance;
-            _assemblyLoadContext = AssemblyLoadContext.Default;
             _loadedModules = new HashSet<LoadedModule>();
         }
 
@@ -84,7 +81,7 @@ namespace Yeast.Modules
                 try
                 {
                     var assemblyPath = Path.GetFullPath(assemblyFile);
-                    var assembly = _assemblyLoadContext.LoadFromAssemblyPath(assemblyPath);
+                    var assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath);
                     _loadedModules.Add(new LoadedModule(modulePath, assembly));
                     break;
                 }

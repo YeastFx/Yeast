@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using Xunit;
-using Yeast.Modules.Tests.Mocks;
 
 namespace Yeast.Modules.Tests
 {
@@ -18,7 +17,7 @@ namespace Yeast.Modules.Tests
         public void CanLoadAllModulesFromModulesDirectory()
         {
             // Arrange
-            var moduleLoader = new MockModuleLoader();
+            var moduleLoader = new ModuleLoader();
             var moduleDirectoryPath = Path.GetFullPath(_modulesBasePath);
 
             // Act
@@ -33,7 +32,7 @@ namespace Yeast.Modules.Tests
         public void CanLoadSingleModuleFromItsDirectory()
         {
             // Arrange
-            var moduleLoader = new MockModuleLoader();
+            var moduleLoader = new ModuleLoader();
             var moduleDirectoryPath = Path.GetFullPath(Path.Combine(_modulesBasePath, "ModuleA"));
 
             // Act
@@ -50,7 +49,7 @@ namespace Yeast.Modules.Tests
         public void CanRetrieveModuleExportedTypes(string moduleName, string typeName)
         {
             // Arrange
-            var moduleLoader = new MockModuleLoader();
+            var moduleLoader = new ModuleLoader();
             var moduleDirectoryPath = Path.GetFullPath(Path.Combine(_modulesBasePath, moduleName));
 
             // Act
