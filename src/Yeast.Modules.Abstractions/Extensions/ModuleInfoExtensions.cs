@@ -7,8 +7,6 @@ namespace Yeast.Modules.Abstractions
 {
     public static class ModuleInfoExtensions
     {
-        private static TypeInfo moduleInfoTypeInfo = typeof(ModuleInfo).GetTypeInfo();
-
         /// <summary>
         /// Indicates if a type is derived from <see cref="ModuleInfo"/>
         /// </summary>
@@ -17,7 +15,7 @@ namespace Yeast.Modules.Abstractions
         public static bool IsModuleInfo(this Type type)
         {
             var typeInfo = type.GetTypeInfo();
-            return typeInfo.IsClass && !typeInfo.IsAbstract && !typeInfo.IsGenericType && moduleInfoTypeInfo.IsAssignableFrom(type.GetTypeInfo());
+            return typeInfo.IsClass && !typeInfo.IsAbstract && !typeInfo.IsGenericType && typeof(ModuleInfo).IsAssignableFrom(type);
         }
 
         /// <summary>
