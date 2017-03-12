@@ -16,7 +16,7 @@ namespace Yeast.Modules.Extensions
         /// <param name="loggerFactory">The <see cref="ILoggerFactory"/> instance</param>
         /// <param name="config">The <see cref="ModuleLoaderConfiguration"/></param>
         /// <returns>The <see cref="IModuleLoader"/> reference</returns>
-        public static IModuleLoader AddModuleLoader(this IServiceCollection services, ILoggerFactory loggerFactory = null, ModuleLoaderConfiguration config = null)
+        public static IModuleLoader AddModuleLoader(this IServiceCollection services, ILoggerFactory loggerFactory = null, IModuleLoaderConfiguration config = null)
         {
             if (services == null)
             {
@@ -38,9 +38,9 @@ namespace Yeast.Modules.Extensions
         /// <param name="services">The <see cref="IServiceCollection"/> reference</param>
         /// <param name="moduleLoader">The <see cref="IModuleLoader"/> reference</param>
         /// <param name="loggerFactory">The <see cref="ILoggerFactory"/> instance</param>
-        /// <param name="config">The <see cref="ModuleManagerConfiguration"/></param>
+        /// <param name="config">The <see cref="IModuleManagerConfiguration"/></param>
         /// <returns>The <see cref="IServiceCollection"/> reference</returns>
-        public static IServiceCollection AddModuleManager(this IServiceCollection services, IModuleLoader moduleLoader, ILoggerFactory loggerFactory = null, ModuleManagerConfiguration config = null)
+        public static IServiceCollection AddModuleManager(this IServiceCollection services, IModuleLoader moduleLoader, ILoggerFactory loggerFactory = null, IModuleManagerConfiguration config = null)
         {
             if (services == null)
             {
