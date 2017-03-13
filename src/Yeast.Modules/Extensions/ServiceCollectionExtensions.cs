@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Yeast.Modules.Extensions
+namespace Yeast.Modules
 {
     /// <summary>
     /// Contains extension methods to <see cref="IServiceCollection"/> for using modules
