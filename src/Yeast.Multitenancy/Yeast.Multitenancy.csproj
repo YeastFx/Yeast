@@ -16,6 +16,8 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.0.0-alpha</Version>
+    <Description>Enables multitenancy for Asp.Net Core applications</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yeast.Core\Yeast.Core.csproj" />
