@@ -1,11 +1,6 @@
 ﻿namespace Yeast.Modules.Abstractions
 {
-    public abstract class ModuleInfo
+    public abstract class ModuleInfo : FeatureInfo
     {
-        public string Name {
-            get {
-                return GetType().Name;
-            }
-        }
     }
 }

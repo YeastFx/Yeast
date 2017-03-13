@@ -11,7 +11,7 @@ namespace Yeast.Modules
         private readonly string _modulePath;
         private readonly Assembly _assembly;
         private readonly ModuleInfo _infos;
-        private readonly Lazy<IEnumerable<IStartup>> _stratups;
+        private readonly HashSet<FeatureInfo> _features;
 
         internal LoadedModule(string modulePath, Assembly assembly)
         {
@@ -24,18 +24,16 @@ namespace Yeast.Modules
 
             _assembly = assembly ?? throw new ArgumentNullException(nameof(assembly));
 
-            var moduleInfoType = _assembly.ExportedTypes.FindModuleInfo();
+            _features = new HashSet<FeatureInfo>(GetAvailableFeatures(_assembly));
 
-            if(moduleInfoType != null)
+            try
             {
-                _infos = (ModuleInfo)Activator.CreateInstance(moduleInfoType);
+                _infos = (ModuleInfo)_features.Single(feature => typeof(ModuleInfo).IsAssignableFrom(feature.GetType()));
             }
-            else
+            catch (InvalidOperationException)
             {
-                throw new InvalidOperationException($"Unable to find a {nameof(ModuleInfo)} implementation in module exported types.");
+                throw new InvalidOperationException($"A module must export one and only one {nameof(ModuleInfo)} implementation.");
             }
-
-            _stratups = new Lazy<IEnumerable<IStartup>>(GetStartups);
         }
 
         public string Path {
@@ -54,18 +52,18 @@ namespace Yeast.Modules
             get { return _assembly; }
         }
 
-        public IEnumerable<IStartup> Startups {
-            get { return _stratups.Value; }
+        public IEnumerable<FeatureInfo> Features {
+            get { return _features; }
         }
 
-        private IEnumerable<IStartup> GetStartups()
+        private static IEnumerable<FeatureInfo> GetAvailableFeatures(Assembly assembly)
         {
-            foreach (var startupType in Assembly.ExportedTypes.Where(type => {
+            foreach (var startupType in assembly.ExportedTypes.Where(type => {
                 var typeInfo = type.GetTypeInfo();
-                return typeInfo.IsClass && !typeInfo.IsAbstract && !typeInfo.IsGenericType && typeof(IStartup).IsAssignableFrom(type);
+                return typeInfo.IsClass && !typeInfo.IsAbstract && !typeInfo.IsGenericType && typeof(FeatureInfo).IsAssignableFrom(type);
             }))
             {
-                yield return (IStartup)Activator.CreateInstance(startupType);
+                yield return (FeatureInfo)Activator.CreateInstance(startupType);
             }
         }
     }

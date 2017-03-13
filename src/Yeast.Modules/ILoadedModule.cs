@@ -10,6 +10,6 @@ namespace Yeast.Modules
         ModuleInfo Infos { get; }
         string Name { get; }
         string Path { get; }
-        IEnumerable<IStartup> Startups { get; }
+        IEnumerable<FeatureInfo> Features { get; }
     }
 }

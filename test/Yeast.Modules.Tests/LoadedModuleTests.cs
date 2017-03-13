@@ -60,7 +60,7 @@ namespace Yeast.Modules.Tests
         }
 
         [Fact]
-        public void ExposesModuleStartups()
+        public void ExposesModuleInfo()
         {
             // Arrange
             var modulePath = Path.Combine(_modulesBasePath, "ModuleA");
@@ -71,8 +71,24 @@ namespace Yeast.Modules.Tests
             var loadedModule = new LoadedModule(modulePath, moduleAssembly);
 
             // Assert
-            Assert.Equal(1, loadedModule.Startups.Count());
-            Assert.Equal("ModuleA.ModuleAStartup", loadedModule.Startups.First().GetType().FullName);
+            Assert.Equal("ModuleA.ModuleA", loadedModule.Infos.GetType().FullName);
+        }
+
+        [Fact]
+        public void ExposesModuleFeatures()
+        {
+            // Arrange
+            var modulePath = Path.Combine(_modulesBasePath, "ModuleA");
+            var moduleAssemblyPath = Directory.EnumerateFiles(modulePath, "ModuleA.dll", SearchOption.AllDirectories).FirstOrDefault();
+            var moduleAssembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(moduleAssemblyPath);
+
+            // Act
+            var loadedModule = new LoadedModule(modulePath, moduleAssembly);
+
+            // Assert
+            Assert.Equal(2, loadedModule.Features.Count());
+            Assert.Contains(loadedModule.Features, (feature) => feature.GetType().FullName == "ModuleA.ModuleA");
+            Assert.Contains(loadedModule.Features, (feature) => feature.GetType().FullName == "ModuleA.Features.FeatureA");
         }
     }
 }
