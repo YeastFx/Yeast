@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Xunit;
+using Yeast.Features.Abstractions;
 using Yeast.Features.Tests.Mocks;
 
 namespace Yeast.Features.Tests
@@ -140,22 +141,61 @@ namespace Yeast.Features.Tests
             Assert.Contains(featureC, manager.EnabledFeatures);
         }
 
-        [Fact]
-        public void ThrowsOnUnavailableFeatures()
+        public static TheoryData<FeatureInfo[], Action<IFeatureManagerBuilder>> ThrowsOnUnavailableFeaturesData
+        {
+            get {
+                return new TheoryData<FeatureInfo[], Action<IFeatureManagerBuilder>>()
+                {
+                    {
+                        new []
+                        {
+                            new MockFeatureInfo("FeatureA"),
+                            new MockFeatureInfo("FeatureB")
+                        },
+                        (builder) => builder.EnableFeature("Foo")
+                    },
+                    {
+                        new []
+                        {
+                            new MockFeatureInfo("FeatureA"),
+                            new MockFeatureInfo("FeatureB")
+                        },
+                        (builder) => builder.EnableFeature(new MockFeatureInfo("FeatureA"))
+                    },
+                    {
+                        new []
+                        {
+                            new MockFeatureInfo("FeatureA"),
+                            new MockFeatureInfo("FeatureB")
+                        },
+                        (builder) => builder.EnableFeature(typeof(MockInheritedFeatureInfo))
+                    },
+                    {
+                        new []
+                        {
+                            new MockFeatureInfo("FeatureA"),
+                            new MockFeatureInfo("FeatureB")
+                        },
+                        (builder) => builder.EnableFeature(typeof(IMockInheritedFeatureInfo))
+                    }
+                };
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(ThrowsOnUnavailableFeaturesData))]
+        public void ThrowsOnUnavailableFeatures(FeatureInfo[] availableFeatures, Action<IFeatureManagerBuilder> enableAction)
         {
             // Arrange
             var builder = new FeatureManagerBuilder();
-            var featureA = new MockFeatureInfo("FeatureA");
-            var featureB = new MockFeatureInfo("FeatureB");
 
             // Act
             builder.AddFeatureProvider(new MockFeatureProvider
             {
-                Features = new[] { featureA, featureB }
+                Features = availableFeatures
             });
 
-            builder.EnableFeature(featureA.Name);
-            builder.EnableFeature("foo");
+            enableAction.Invoke(builder);
 
             Action buildAction = () => builder.Build();
 
