@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Features.Abstractions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Features", "src\Yeast.Features\Yeast.Features.csproj", "{D92B72F6-0BAE-4E7E-9D46-21B9B18F97C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Features.Tests", "test\Yeast.Features.Tests\Yeast.Features.Tests.csproj", "{253844DF-B285-4E6C-B5F7-A7CE28A24717}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,18 @@ Global
 		{D92B72F6-0BAE-4E7E-9D46-21B9B18F97C8}.Release|x64.Build.0 = Release|Any CPU
 		{D92B72F6-0BAE-4E7E-9D46-21B9B18F97C8}.Release|x86.ActiveCfg = Release|Any CPU
 		{D92B72F6-0BAE-4E7E-9D46-21B9B18F97C8}.Release|x86.Build.0 = Release|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Debug|x64.Build.0 = Debug|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Debug|x86.Build.0 = Debug|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Release|x64.ActiveCfg = Release|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Release|x64.Build.0 = Release|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Release|x86.ActiveCfg = Release|Any CPU
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -198,5 +212,6 @@ Global
 		{6D94C189-F279-426E-B61F-83B31791E7B3} = {A5110279-498A-4DFE-A616-9A6688269570}
 		{15C92359-50A5-43AE-9738-657D30546727} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{D92B72F6-0BAE-4E7E-9D46-21B9B18F97C8} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
+		{253844DF-B285-4E6C-B5F7-A7CE28A24717} = {F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}
 	EndGlobalSection
 EndGlobal

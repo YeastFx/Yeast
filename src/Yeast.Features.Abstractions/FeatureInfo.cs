@@ -2,7 +2,7 @@
 {
     public abstract class FeatureInfo
     {
-        public string Name {
+        public virtual string Name {
             get {
                 return GetType().Name;
             }

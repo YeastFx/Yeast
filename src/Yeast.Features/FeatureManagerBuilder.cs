@@ -14,7 +14,7 @@ namespace Yeast.Features
 
         private readonly ILogger _logger;
 
-        public FeatureManagerBuilder(ILoggerFactory loggerFactory)
+        public FeatureManagerBuilder(ILoggerFactory loggerFactory = null)
         {
             _logger = (ILogger)loggerFactory?.CreateLogger<FeatureManager>() ?? NullLogger.Instance;
 
@@ -22,6 +22,7 @@ namespace Yeast.Features
             _enabledFeatures = new HashSet<string>();
         }
 
+        /// <inheritdoc />
         public IFeatureManagerBuilder AddFeatureProvider(IFeatureProvider featureProvider)
         {
             if(featureProvider == null)
@@ -36,6 +37,7 @@ namespace Yeast.Features
             return this;
         }
 
+        /// <inheritdoc />
         public IFeatureManagerBuilder EnableFeature(string featureName)
         {
             if (featureName == null)
@@ -56,7 +58,19 @@ namespace Yeast.Features
 
             var availableFeatures = _featureProviders.SelectMany(featureProvider => featureProvider.Features).Distinct();
 
-            var enabledFeatures = availableFeatures.Where(feature => _enabledFeatures.Contains(feature.Name));
+            var enabledFeatures = new HashSet<FeatureInfo>();
+            foreach(var requestedFeature in _enabledFeatures)
+            {
+                try
+                {
+                    enabledFeatures.Add(availableFeatures.First(feature => feature.Name == requestedFeature));
+                }
+                catch(InvalidOperationException)
+                {
+                    _logger.LogError($"Missing requested feature : {requestedFeature}");
+                    throw new InvalidOperationException($"Feature named {requestedFeature} is not available.");
+                }
+            }
 
             return new FeatureManager(availableFeatures.AsEnumerable(), enabledFeatures);
         }
