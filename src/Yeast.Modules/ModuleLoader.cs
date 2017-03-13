@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Loader;
+using Yeast.Features.Abstractions;
 
 namespace Yeast.Modules
 {
@@ -29,6 +30,9 @@ namespace Yeast.Modules
             _logger = (ILogger)loggerFactory?.CreateLogger<ModuleLoader>() ?? NullLogger.Instance;
             _loadedModules = new HashSet<LoadedModule>();
         }
+
+        /// <inheritdoc />
+        public IEnumerable<FeatureInfo> Features => _loadedModules.SelectMany(module => module.Features);
 
         /// <inheritdoc />
         public void LoadModules(string modulesDirectory)

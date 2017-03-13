@@ -1,6 +1,8 @@
-﻿namespace Yeast.Modules
+﻿using Yeast.Features.Abstractions;
+
+namespace Yeast.Modules
 {
-    public interface IModuleLoader
+    public interface IModuleLoader : IFeatureProvider
     {
         /// <summary>
         /// Gets an <see cref="ILoadedModule"/> by its Name
