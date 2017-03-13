@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Yeast.Modules.Abstractions;
+using Yeast.Features.Abstractions;
 
 namespace Yeast.Modules
 {

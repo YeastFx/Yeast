@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Modules.Abstractions"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotAModule", "test\Modules\NotAModule\NotAModule.csproj", "{6D94C189-F279-426E-B61F-83B31791E7B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Features.Abstractions", "src\Yeast.Features.Abstractions\Yeast.Features.Abstractions.csproj", "{15C92359-50A5-43AE-9738-657D30546727}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,18 @@ Global
 		{6D94C189-F279-426E-B61F-83B31791E7B3}.Release|x64.Build.0 = Release|Any CPU
 		{6D94C189-F279-426E-B61F-83B31791E7B3}.Release|x86.ActiveCfg = Release|Any CPU
 		{6D94C189-F279-426E-B61F-83B31791E7B3}.Release|x86.Build.0 = Release|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Debug|x64.Build.0 = Debug|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Debug|x86.Build.0 = Debug|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Release|x64.ActiveCfg = Release|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Release|x64.Build.0 = Release|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Release|x86.ActiveCfg = Release|Any CPU
+		{15C92359-50A5-43AE-9738-657D30546727}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -168,5 +182,6 @@ Global
 		{DE9D30B4-F8B5-4397-B18B-990D946F23CF} = {A5110279-498A-4DFE-A616-9A6688269570}
 		{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{6D94C189-F279-426E-B61F-83B31791E7B3} = {A5110279-498A-4DFE-A616-9A6688269570}
+		{15C92359-50A5-43AE-9738-657D30546727} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,4 @@
-﻿namespace Yeast.Modules.Abstractions
+﻿namespace Yeast.Features.Abstractions
 {
     public abstract class FeatureInfo
     {

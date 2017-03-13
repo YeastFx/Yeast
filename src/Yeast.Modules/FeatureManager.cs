@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Yeast.Modules.Abstractions;
+using Yeast.Features.Abstractions;
 
 namespace Yeast.Modules
 {

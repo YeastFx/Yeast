@@ -1,4 +1,4 @@
-﻿using Yeast.Modules.Abstractions;
+﻿using Yeast.Features.Abstractions;
 
 namespace ModuleA.Features
 {
