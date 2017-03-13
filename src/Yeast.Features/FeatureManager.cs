@@ -1,24 +1,18 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Yeast.Features.Abstractions;
 
-namespace Yeast.Modules
+namespace Yeast.Features
 {
     public class FeatureManager : IFeatureManager
     {
         private readonly List<FeatureInfo> _enabledFeatures;
         private readonly ILogger _logger;
-        private readonly IModuleLoader _moduleLoader;
 
-        public FeatureManager(IModuleLoader moduleLoader) : this(moduleLoader, null) { }
-
-        public FeatureManager(IModuleLoader moduleLoader, ILoggerFactory loggerFactory)
+        public FeatureManager(ILoggerFactory loggerFactory)
         {
-            _moduleLoader = moduleLoader ?? throw new ArgumentNullException(nameof(moduleLoader));
-
             _logger = (ILogger)loggerFactory?.CreateLogger<FeatureManager>() ?? NullLogger.Instance;
 
             _enabledFeatures = new List<FeatureInfo>();

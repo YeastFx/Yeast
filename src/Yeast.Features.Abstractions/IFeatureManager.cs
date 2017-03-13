@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Yeast.Features.Abstractions;
 
-namespace Yeast.Modules
+namespace Yeast.Features.Abstractions
 {
     public interface IFeatureManager
     {
