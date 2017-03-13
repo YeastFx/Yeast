@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Yeast.Features.Abstractions;
 
 namespace Yeast.Features
@@ -10,7 +11,9 @@ namespace Yeast.Features
     public class FeatureManagerBuilder : IFeatureManagerBuilder
     {
         private readonly HashSet<IFeatureProvider> _featureProviders;
-        private readonly HashSet<string> _enabledFeatures;
+        private readonly HashSet<string> _enabledFeatureNames;
+        private readonly HashSet<FeatureInfo> _enabledFeatureInstances;
+        private readonly HashSet<Type> _enabledFeatureTypes;
 
         private readonly ILogger _logger;
 
@@ -19,7 +22,9 @@ namespace Yeast.Features
             _logger = (ILogger)loggerFactory?.CreateLogger<FeatureManager>() ?? NullLogger.Instance;
 
             _featureProviders = new HashSet<IFeatureProvider>();
-            _enabledFeatures = new HashSet<string>();
+            _enabledFeatureNames = new HashSet<string>();
+            _enabledFeatureInstances = new HashSet<FeatureInfo>();
+            _enabledFeatureTypes = new HashSet<Type>();
         }
 
         /// <inheritdoc />
@@ -45,9 +50,39 @@ namespace Yeast.Features
                 throw new ArgumentNullException(nameof(featureName));
             }
 
-            _enabledFeatures.Add(featureName);
+            _enabledFeatureNames.Add(featureName);
 
-            _logger.LogInformation($"Feature {featureName} requested.");
+            _logger.LogInformation($"Feature named {featureName} requested.");
+
+            return this;
+        }
+
+        /// <inheritdoc />
+        public IFeatureManagerBuilder EnableFeature(FeatureInfo feature)
+        {
+            if (feature == null)
+            {
+                throw new ArgumentNullException(nameof(feature));
+            }
+
+            _enabledFeatureInstances.Add(feature);
+
+            _logger.LogInformation($"Feature instance of {feature.Name} requested.");
+
+            return this;
+        }
+
+        /// <inheritdoc />
+        public IFeatureManagerBuilder EnableFeature(Type featureType)
+        {
+            if (featureType == null)
+            {
+                throw new ArgumentNullException(nameof(featureType));
+            }
+
+            _enabledFeatureTypes.Add(featureType);
+
+            _logger.LogInformation($"Feature of type {featureType} requested.");
 
             return this;
         }
@@ -59,16 +94,54 @@ namespace Yeast.Features
             var availableFeatures = _featureProviders.SelectMany(featureProvider => featureProvider.Features).Distinct();
 
             var enabledFeatures = new HashSet<FeatureInfo>();
-            foreach(var requestedFeature in _enabledFeatures)
+
+            // Enable by instance
+            foreach (var requestedFeature in _enabledFeatureInstances)
             {
+                if (!availableFeatures.Contains(requestedFeature))
+                {
+                    _logger.LogError($"Missing requested feature instance : {requestedFeature.Name}");
+                    throw new InvalidOperationException($"Feature instance {requestedFeature.Name} is not available.");
+                }
+                else
+                {
+                    enabledFeatures.Add(requestedFeature);
+                }
+            }
+
+            // Enable by name
+            foreach (var requestedFeatureName in _enabledFeatureNames)
+            {
+                if(enabledFeatures.Any(feature => feature.Name == requestedFeatureName))
+                {
+                    continue;
+                }
                 try
                 {
-                    enabledFeatures.Add(availableFeatures.First(feature => feature.Name == requestedFeature));
+                    enabledFeatures.Add(availableFeatures.First(feature => feature.Name == requestedFeatureName));
                 }
                 catch(InvalidOperationException)
                 {
-                    _logger.LogError($"Missing requested feature : {requestedFeature}");
-                    throw new InvalidOperationException($"Feature named {requestedFeature} is not available.");
+                    _logger.LogError($"Missing requested feature : {requestedFeatureName}");
+                    throw new InvalidOperationException($"Feature named {requestedFeatureName} is not available.");
+                }
+            }
+
+            // Enable by type
+            foreach(var requestedFeatureType in _enabledFeatureTypes)
+            {
+                if (enabledFeatures.Any(feature => requestedFeatureType.IsInstanceOfType(feature)))
+                {
+                    continue;
+                }
+                try
+                {
+                    enabledFeatures.Add(availableFeatures.First(feature => requestedFeatureType.IsInstanceOfType(feature)));
+                }
+                catch (InvalidOperationException)
+                {
+                    _logger.LogError($"Missing requested feature type : {requestedFeatureType.Name}");
+                    throw new InvalidOperationException($"Feature of type {requestedFeatureType.Name} is not available.");
                 }
             }
 

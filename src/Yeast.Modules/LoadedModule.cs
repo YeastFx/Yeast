@@ -29,7 +29,7 @@ namespace Yeast.Modules
 
             try
             {
-                _infos = (ModuleInfo)_features.Single(feature => typeof(ModuleInfo).IsAssignableFrom(feature.GetType()));
+                _infos = (ModuleInfo)_features.Single(feature => typeof(ModuleInfo).IsInstanceOfType(feature));
             }
             catch (InvalidOperationException)
             {

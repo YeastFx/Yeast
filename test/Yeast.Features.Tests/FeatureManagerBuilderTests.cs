@@ -62,6 +62,85 @@ namespace Yeast.Features.Tests
         }
 
         [Fact]
+        public void EnablesFeaturesByInstance()
+        {
+            // Arrange
+            var builder = new FeatureManagerBuilder();
+            var featureA = new MockFeatureInfo("FeatureA");
+            var featureB = new MockFeatureInfo("FeatureB");
+            var featureC = new MockFeatureInfo("FeatureC");
+
+            // Act
+            builder.AddFeatureProvider(new MockFeatureProvider
+            {
+                Features = new[] { featureA, featureB, featureC }
+            });
+
+            builder.EnableFeature(featureA);
+            builder.EnableFeature(featureB);
+
+            var manager = builder.Build();
+
+            // Assert
+            Assert.Equal(2, manager.EnabledFeatures.Count());
+            Assert.Contains(featureA, manager.EnabledFeatures);
+            Assert.Contains(featureB, manager.EnabledFeatures);
+            Assert.DoesNotContain(featureC, manager.EnabledFeatures);
+        }
+
+        [Fact]
+        public void EnablesFeaturesByType()
+        {
+            // Arrange
+            var builder = new FeatureManagerBuilder();
+            var featureA = new MockFeatureInfo("FeatureA");
+            var featureB = new MockInheritedFeatureInfo("FeatureB");
+            var featureC = new MockInheritedFeatureInfoWithInterface("FeatureC");
+
+            // Act
+            builder.AddFeatureProvider(new MockFeatureProvider
+            {
+                Features = new[] { featureA, featureB, featureC }
+            });
+
+            builder.EnableFeature(typeof(MockInheritedFeatureInfo));
+
+            var manager = builder.Build();
+
+            // Assert
+            Assert.Equal(1, manager.EnabledFeatures.Count());
+            Assert.DoesNotContain(featureA, manager.EnabledFeatures);
+            Assert.Contains(featureB, manager.EnabledFeatures);
+            Assert.DoesNotContain(featureC, manager.EnabledFeatures);
+        }
+
+        [Fact]
+        public void EnablesFeaturesByInterface()
+        {
+            // Arrange
+            var builder = new FeatureManagerBuilder();
+            var featureA = new MockFeatureInfo("FeatureA");
+            var featureB = new MockInheritedFeatureInfo("FeatureB");
+            var featureC = new MockInheritedFeatureInfoWithInterface("FeatureC");
+
+            // Act
+            builder.AddFeatureProvider(new MockFeatureProvider
+            {
+                Features = new[] { featureA, featureB, featureC }
+            });
+
+            builder.EnableFeature(typeof(IMockInheritedFeatureInfo));
+
+            var manager = builder.Build();
+
+            // Assert
+            Assert.Equal(1, manager.EnabledFeatures.Count());
+            Assert.DoesNotContain(featureA, manager.EnabledFeatures);
+            Assert.DoesNotContain(featureB, manager.EnabledFeatures);
+            Assert.Contains(featureC, manager.EnabledFeatures);
+        }
+
+        [Fact]
         public void ThrowsOnUnavailableFeatures()
         {
             // Arrange
