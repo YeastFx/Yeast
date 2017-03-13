@@ -1,26 +1,23 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Yeast.Features.Abstractions;
 
 namespace Yeast.Features
 {
     public class FeatureManager : IFeatureManager
     {
-        private readonly List<FeatureInfo> _enabledFeatures;
-        private readonly ILogger _logger;
+        private readonly IEnumerable<FeatureInfo> _availableFeatures;
+        private readonly IEnumerable<FeatureInfo> _enabledFeatures;
 
-        public FeatureManager(ILoggerFactory loggerFactory)
+        internal FeatureManager(IEnumerable<FeatureInfo> availableFeatures, IEnumerable<FeatureInfo> enabledFeatures)
         {
-            _logger = (ILogger)loggerFactory?.CreateLogger<FeatureManager>() ?? NullLogger.Instance;
-
-            _enabledFeatures = new List<FeatureInfo>();
+            _availableFeatures = availableFeatures;
+            _enabledFeatures = enabledFeatures;
         }
 
         /// <inheritdoc />
-        public IEnumerable<FeatureInfo> EnabledFeatures {
-            get { return _enabledFeatures.AsEnumerable(); }
-        }
+        public IEnumerable<FeatureInfo> EnabledFeatures => _enabledFeatures;
+
+        /// <inheritdoc />
+        public IEnumerable<FeatureInfo> AvailableFeatures => _availableFeatures;
     }
 }
