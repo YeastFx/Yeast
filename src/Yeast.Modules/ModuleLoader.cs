@@ -49,6 +49,10 @@ namespace Yeast.Modules
                     LoadModuleInternal(modulePath);
                 }
             }
+            else
+            {
+                _logger.LogWarning($"Modules directory at {modulesDirectory} not found.");
+            }
         }
 
         /// <inheritdoc />
@@ -57,6 +61,10 @@ namespace Yeast.Modules
             if (Directory.Exists(moduleDirectory))
             {
                 LoadModuleInternal(moduleDirectory);
+            }
+            else
+            {
+                _logger.LogWarning($"Module directory at {moduleDirectory} not found.");
             }
         }
 
@@ -77,6 +85,7 @@ namespace Yeast.Modules
                     var assemblyPath = Path.GetFullPath(assemblyFile);
                     var assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath);
                     _loadedModules.Add(new LoadedModule(modulePath, assembly));
+                    _logger.LogInformation($"Successfully loaded {assemblyFile} module assembly.");
                     break;
                 }
                 catch (Exception exp)
