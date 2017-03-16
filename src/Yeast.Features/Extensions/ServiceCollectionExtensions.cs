@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using Yeast.Features.Abstractions;
 
-namespace Yeast.Features.Extensions
+namespace Yeast.Features
 {
     /// <summary>
     /// Contains extension methods to <see cref="IServiceCollection"/> for using features
@@ -14,21 +14,35 @@ namespace Yeast.Features.Extensions
         /// Adds <see cref="FeatureManager"/> to the service collection
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection"/> reference</param>
-        /// <param name="loggerFactory">The <see cref="ILoggerFactory"/> instance</param>
         /// <param name="builderConfiguration">The <see cref="IFeatureManagerBuilder"/> configuration action</param>
-        /// <returns>The <see cref="IServiceCollection"/> reference</returns>
-        public static IServiceCollection AddFeatures(this IServiceCollection services, ILoggerFactory loggerFactory = null, Action<IFeatureManagerBuilder> builderConfiguration = null)
+        /// <param name="loggerFactory">The <see cref="ILoggerFactory"/> instance</param>
+        /// <returns>The <see cref="IFeatureManager"/> reference</returns>
+        public static IFeatureManager AddFeatures(this IServiceCollection services, Action<IFeatureManagerBuilder> builderConfiguration, ILoggerFactory loggerFactory = null)
         {
             if (services == null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
 
+            if (builderConfiguration == null)
+            {
+                throw new ArgumentNullException(nameof(builderConfiguration));
+            }
+
             var builder = new FeatureManagerBuilder(loggerFactory);
 
             builderConfiguration?.Invoke(builder);
 
-            return services.AddSingleton<IFeatureManager>(builder.Build());
+            var featureManager = builder.Build();
+
+            services.AddSingleton<IFeatureManager>(featureManager);
+
+            foreach(var enabledFeature in featureManager.EnabledFeatures)
+            {
+                enabledFeature.ConfigureServices(services, featureManager);
+            }
+
+            return featureManager;
         }
     }
 }

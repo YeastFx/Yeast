@@ -1,4 +1,6 @@
-﻿using Yeast.Features.Abstractions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using Yeast.Features.Abstractions;
 
 namespace Yeast.Features.Tests.Mocks
 {
@@ -16,6 +18,13 @@ namespace Yeast.Features.Tests.Mocks
         public override string Name => _featureName;
 
         public override int Priority => _priority;
+
+        public Action<IServiceCollection, IFeatureManager> ConfigureAction { get; set; }
+
+        public override void ConfigureServices(IServiceCollection services, IFeatureManager featureManager)
+        {
+            ConfigureAction?.Invoke(services, featureManager);
+        }
     }
 
     public class MockInheritedFeatureInfo : MockFeatureInfo
