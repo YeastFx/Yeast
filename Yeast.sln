@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Mvc", "src\Yeast.Mvc\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Mvc.Abstractions", "src\Yeast.Mvc.Abstractions\Yeast.Mvc.Abstractions.csproj", "{D5A9FC6A-9EB2-4649-BFFF-8E52F4A1FBB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Mvc.Tests", "test\Yeast.Mvc.Tests\Yeast.Mvc.Tests.csproj", "{89302421-B5D7-4383-94A5-48E43F8FD9F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -223,6 +225,18 @@ Global
 		{D5A9FC6A-9EB2-4649-BFFF-8E52F4A1FBB1}.Release|x64.Build.0 = Release|Any CPU
 		{D5A9FC6A-9EB2-4649-BFFF-8E52F4A1FBB1}.Release|x86.ActiveCfg = Release|Any CPU
 		{D5A9FC6A-9EB2-4649-BFFF-8E52F4A1FBB1}.Release|x86.Build.0 = Release|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Debug|x64.Build.0 = Debug|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Debug|x86.Build.0 = Debug|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Release|x64.ActiveCfg = Release|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Release|x64.Build.0 = Release|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Release|x86.ActiveCfg = Release|Any CPU
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -243,5 +257,6 @@ Global
 		{439B934A-93D2-4175-AE9F-3EB77F5E6777} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{CB1FD0C3-73B9-4F82-B7C7-67D312951F36} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{D5A9FC6A-9EB2-4649-BFFF-8E52F4A1FBB1} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
+		{89302421-B5D7-4383-94A5-48E43F8FD9F6} = {F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}
 	EndGlobalSection
 EndGlobal

@@ -2,7 +2,7 @@
 
 namespace Yeast.Mvc.Abstractions
 {
-    public abstract class MvcModule : ModuleInfo
+    public abstract class MvcModuleInfo : ModuleInfo
     {
     }
 }
