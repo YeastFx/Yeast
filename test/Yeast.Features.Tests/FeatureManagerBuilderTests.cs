@@ -229,7 +229,7 @@ namespace Yeast.Features.Tests
         }
 
         [Fact]
-        public void DontCreateEnabledFeaturesDuplicates()
+        public void DontCreatesEnabledFeaturesDuplicates()
         {
             // Arrange
             var builder = new FeatureManagerBuilder();
@@ -249,6 +249,31 @@ namespace Yeast.Features.Tests
             // Assert
             Assert.Equal(1, manager.EnabledFeatures.Count());
             Assert.Same(featureA, manager.EnabledFeatures.First());
+        }
+
+        [Fact]
+        public void SortsFeaturesByPriority()
+        {
+            // Arrange
+            var builder = new FeatureManagerBuilder();
+            var featureA = new MockFeatureInfo("FeatureA", 0);
+            var featureB = new MockFeatureInfo("FeatureB", 10);
+            var featureC = new MockFeatureInfo("FeatureC", -10);
+
+            // Act
+            builder.AddFeatureProvider(new MockFeatureProvider
+            {
+                Features = new[] { featureA, featureB, featureC }
+            });
+
+            builder.EnableFeature(featureC.Name);
+            builder.EnableFeature(featureB.Name);
+
+            var manager = builder.Build();
+
+            // Assert
+            Assert.Equal(new[] { featureB, featureA, featureC }, manager.AvailableFeatures);
+            Assert.Equal(new[] { featureB, featureC }, manager.EnabledFeatures);
         }
     }
 }

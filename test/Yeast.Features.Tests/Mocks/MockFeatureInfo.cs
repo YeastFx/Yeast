@@ -5,13 +5,17 @@ namespace Yeast.Features.Tests.Mocks
     public class MockFeatureInfo : FeatureInfo
     {
         private readonly string _featureName;
+        private readonly int _priority;
 
-        public MockFeatureInfo(string featureName)
+        public MockFeatureInfo(string featureName, int priority = 0)
         {
             _featureName = featureName;
+            _priority = priority;
         }
 
         public override string Name => _featureName;
+
+        public override int Priority => _priority;
     }
 
     public class MockInheritedFeatureInfo : MockFeatureInfo

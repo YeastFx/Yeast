@@ -91,9 +91,12 @@ namespace Yeast.Features
         {
             _logger.LogInformation($"Building {nameof(FeatureManager)}...");
 
-            var availableFeatures = _featureProviders.SelectMany(featureProvider => featureProvider.Features).Distinct();
+            var availableFeatures = _featureProviders
+                .SelectMany(featureProvider => featureProvider.Features)
+                .Distinct()
+                .OrderByDescending(feature => feature.Priority);
 
-            var enabledFeatures = new HashSet<FeatureInfo>();
+            var enabledFeatures = new List<FeatureInfo>();
 
             // Enable by instance
             foreach (var requestedFeature in _enabledFeatureInstances)
@@ -145,7 +148,10 @@ namespace Yeast.Features
                 }
             }
 
-            return new FeatureManager(availableFeatures.AsEnumerable(), enabledFeatures);
+            // Sort features
+            var prioritizedFeatures = enabledFeatures.OrderByDescending(feature => feature.Priority);
+
+            return new FeatureManager(availableFeatures, prioritizedFeatures);
         }
     }
 }
