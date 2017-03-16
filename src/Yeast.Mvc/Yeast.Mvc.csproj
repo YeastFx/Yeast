@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.0.0-alpha</Version>
+    <Company />
+    <Copyright>Codinlab</Copyright>
+    <PackageLicenseUrl>https://github.com/YeastFx/Yeast/raw/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/YeastFx/Yeast</PackageProjectUrl>
+    <PackageIconUrl>https://yeastfx.github.io/NuGet/Yeast.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/YeastFx/Yeast.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Enables ASP.NET Core MVC features</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yeast.Mvc.Abstractions\Yeast.Mvc.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
