@@ -6,15 +6,15 @@ using Yeast.Mvc.Abstractions;
 
 namespace Yeast.Mvc
 {
-    public static class MvcCoreBuilderExtensions
+    public static class MvcBuilderExtensions
     {
         /// <summary>
         /// Adds enabled MvcModules assemblies as ApplicationParts
         /// </summary>
-        /// <param name="builder">The <see cref="IMvcCoreBuilder"/>.</param>
+        /// <param name="builder">The <see cref="IMvcBuilder"/>.</param>
         /// <param name="featureManager">The <see cref="IFeatureManager"/></param>
-        /// <returns>The <see cref="IMvcCoreBuilder"/>.</returns>
-        public static IMvcCoreBuilder AddMvcModules(this IMvcCoreBuilder builder, IFeatureManager featureManager)
+        /// <returns>The <see cref="IMvcBuilder"/>.</returns>
+        public static IMvcBuilder AddMvcModules(this IMvcBuilder builder, IFeatureManager featureManager)
         {
             foreach(var mvcModule in featureManager.EnabledFeatures.OfType<MvcModuleInfo>())
             {
