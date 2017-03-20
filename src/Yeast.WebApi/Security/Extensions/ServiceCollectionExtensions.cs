@@ -14,7 +14,7 @@ namespace Yeast.WebApi.Security
         /// <param name="services">The <see cref="IServiceCollection"/> reference.</param>
         /// <param name="configureOptions">The <see cref="JwtIssuerOptions"/> configuration action.</param>
         /// <returns>The <see cref="IServiceCollection"/> reference.</returns>
-        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, Action<JwtIssuerOptions> configureOptions)
+        public static IServiceCollection AddJwtIssuer(this IServiceCollection services, Action<JwtIssuerOptions> configureOptions)
         {
             if (services == null)
             {
