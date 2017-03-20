@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace Yeast.WebApi.Security
     {
         private readonly JwtIssuerOptions _options;
 
-        public JwtIssuer(JwtIssuerOptions options) {
-            _options = options ?? throw new ArgumentNullException(nameof(options));
+        public JwtIssuer(IOptions<JwtIssuerOptions> options) {
+            _options = options.Value;
         }
 
         public string GetJwt(ClaimsIdentity identity, string jwtIdentifier = null, TimeSpan? tokenLifetime = null)
