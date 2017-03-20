@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.0.0-alpha</Version>
+    <Company />
+    <Copyright>Codinlab</Copyright>
+    <PackageLicenseUrl>https://github.com/YeastFx/Yeast/raw/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/YeastFx/Yeast</PackageProjectUrl>
+    <PackageIconUrl>https://yeastfx.github.io/NuGet/Yeast.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/YeastFx/Yeast.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>ASP.NET Core Web API utilities</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.1.3" />
+  </ItemGroup>
+
+</Project>
