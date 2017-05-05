@@ -25,5 +25,11 @@ namespace Yeast.WebApi.Data
         /// </summary>
         [FromQuery(Name = "$limit")]
         public int? Limit { get; set; }
+
+        /// <summary>
+        /// Set to true to include total results
+        /// </summary>
+        [FromQuery(Name = "$count")]
+        public bool? Count { get; set; }
     }
 }

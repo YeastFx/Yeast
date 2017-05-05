@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Yeast.WebApi.Data
 {
@@ -16,6 +17,7 @@ namespace Yeast.WebApi.Data
         /// <summary>
         /// Total number of results
         /// </summary>
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? TotalResults { get; set; }
     }
 }
