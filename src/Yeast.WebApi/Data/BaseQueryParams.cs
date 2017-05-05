@@ -30,6 +30,6 @@ namespace Yeast.WebApi.Data
         /// Set to true to include total results
         /// </summary>
         [FromQuery(Name = "$count")]
-        public bool? Count { get; set; }
+        public bool Count { get; set; }
     }
 }
