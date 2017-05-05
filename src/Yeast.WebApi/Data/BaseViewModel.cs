@@ -11,6 +11,10 @@ namespace Yeast.WebApi.Data
     {
         protected readonly T entity;
 
+        internal T Entity {
+            get => entity;
+        }
+
         /// <summary>
         /// Creates a view model based on a new entity
         /// </summary>
