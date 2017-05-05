@@ -5,7 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 
-namespace Yeast.WebApi.Security
+namespace Yeast.Security.Jwt
 {
     public class JwtIssuer
     {

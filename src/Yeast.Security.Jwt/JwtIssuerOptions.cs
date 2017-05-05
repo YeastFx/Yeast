@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System;
 
-namespace Yeast.WebApi.Security
+namespace Yeast.Security.Jwt
 {
     public class JwtIssuerOptions
     {

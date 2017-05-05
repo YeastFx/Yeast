@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Yeast.WebApi.Security
+namespace Yeast.Security.Jwt
 {
     /// <summary>
     /// Contains extension methods to <see cref="IServiceCollection"/>.
