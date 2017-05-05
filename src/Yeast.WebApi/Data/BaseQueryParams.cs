@@ -1,4 +1,6 @@
-﻿namespace Yeast.WebApi.Data
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Yeast.WebApi.Data
 {
     /// <summary>
     /// Base class form query parameters
@@ -9,16 +11,19 @@
         /// Field name to sort on
         /// Use -filed_name for descending order
         /// </summary>
+        [FromQuery(Name = "$sort")]
         public string Sort { get; set; }
 
         /// <summary>
         /// Start index
         /// </summary>
+        [FromQuery(Name = "$offset")]
         public int? Offset { get; set; }
 
         /// <summary>
         /// Max results to display
         /// </summary>
+        [FromQuery(Name = "$limit")]
         public int? Limit { get; set; }
     }
 }
