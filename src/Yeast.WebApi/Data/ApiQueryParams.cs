@@ -5,7 +5,7 @@ namespace Yeast.WebApi.Data
     /// <summary>
     /// Base class form query parameters
     /// </summary>
-    public class BaseQueryParams
+    public class ApiQueryParams : ApiRequestParams
     {
         /// <summary>
         /// Field name to sort on
