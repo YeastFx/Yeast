@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Copyright>Codinlab</Copyright>
     <AssemblyTitle>Yeast.Multitenancy</AssemblyTitle>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFrameworks>netstandard1.3;net451</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Yeast.Multitenancy</AssemblyName>

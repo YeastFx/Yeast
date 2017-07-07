@@ -133,13 +133,13 @@ namespace Yeast.Features
             // Enable by type
             foreach(var requestedFeatureType in _enabledFeatureTypes)
             {
-                if (enabledFeatures.Any(feature => requestedFeatureType.IsInstanceOfType(feature)))
+                if (enabledFeatures.Any(feature => requestedFeatureType.GetTypeInfo().IsAssignableFrom(feature.GetType().GetTypeInfo())))
                 {
                     continue;
                 }
                 try
                 {
-                    enabledFeatures.Add(availableFeatures.First(feature => requestedFeatureType.IsInstanceOfType(feature)));
+                    enabledFeatures.Add(availableFeatures.First(feature => requestedFeatureType.GetTypeInfo().IsAssignableFrom(feature.GetType().GetTypeInfo())));
                 }
                 catch (InvalidOperationException)
                 {
