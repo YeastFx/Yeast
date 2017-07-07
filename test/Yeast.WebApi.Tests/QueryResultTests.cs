@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
-using Yeast.WebApi.Data;
+using Yeast.WebApi;
 
 namespace Yeast.WebApi.Tests
 {

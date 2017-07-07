@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Yeast.WebApi.Data
+namespace Yeast.WebApi
 {
     /// <summary>
     /// Base class form query parameters

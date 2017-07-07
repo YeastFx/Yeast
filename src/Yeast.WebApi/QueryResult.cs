@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Yeast.WebApi.Data
+namespace Yeast.WebApi
 {
     /// <summary>
     /// Class to provide query results

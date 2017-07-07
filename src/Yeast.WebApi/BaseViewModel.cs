@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Yeast.WebApi.Data
+namespace Yeast.WebApi
 {
     /// <summary>
     /// Base class to provide view models

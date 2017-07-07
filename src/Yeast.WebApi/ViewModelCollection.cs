@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yeast.WebApi.Data
+namespace Yeast.WebApi
 {
     public class ViewModelCollection<TEntity, TVM> : IList<TVM>, IList
         where TVM : BaseViewModel<TEntity>

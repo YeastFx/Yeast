@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Yeast.WebApi.Data
+namespace Yeast.WebApi
 {
     /// <summary>
     /// Base class for API request parameters

@@ -1,4 +1,4 @@
-﻿namespace Yeast.WebApi.Data
+﻿namespace Yeast.WebApi
 {
     public static class BaseViewModelExtensions
     {
