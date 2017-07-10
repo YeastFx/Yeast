@@ -5,10 +5,13 @@ namespace Yeast.WebApi
     /// <summary>
     /// Base class to provide view models
     /// </summary>
-    /// <typeparam name="TEntity">Type of underlying entity</typeparam>
+    /// <typeparam name="T">Type of underlying entity</typeparam>
     public abstract class BaseViewModel<T>
         where T : new()
     {
+        /// <summary>
+        /// The underlying entity
+        /// </summary>
         protected readonly T entity;
 
         internal T Entity {
