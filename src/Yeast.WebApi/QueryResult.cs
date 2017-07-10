@@ -1,23 +1,22 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace Yeast.WebApi
 {
     /// <summary>
     /// Class to provide query results
     /// </summary>
-    /// <typeparam name="T">Queried object type</typeparam>
-    public class QueryResult<T>
+    public class QueryResult
     {
         /// <summary>
         /// Paged query results
         /// </summary>
-        public IEnumerable<T> Data { get; set; }
+        public IEnumerable Data { get; set; }
 
         /// <summary>
         /// Total number of results
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int? TotalResults { get; set; }
+        public virtual int? TotalResults { get; set; }
     }
 }
