@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using Xunit;
-using Yeast.WebApi.Tests.TestObjects;
+using Yeast.Partials.Tests.TestObjects;
 
-namespace Yeast.WebApi.Tests
+namespace Yeast.Partials.Tests
 {
     public class PartialBuilderTests
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Yeast.WebApi.Internal
+namespace Yeast.Partials.Internal
 {
     internal class TypedPropertyAccessor : PropertyAccessor
     {

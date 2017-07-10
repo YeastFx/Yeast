@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Yeast.WebApi.Internal;
+using Yeast.Partials.Internal;
 
-namespace Yeast.WebApi
+namespace Yeast.Partials
 {
     /// <summary>
     /// Helper class to project objects with filtered fields

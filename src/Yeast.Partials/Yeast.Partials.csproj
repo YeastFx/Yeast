@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>1.0.0-alpha</Version>
     <Company />
@@ -10,16 +12,14 @@
     <PackageIconUrl>https://yeastfx.github.io/NuGet/Yeast.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/YeastFx/Yeast.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>ASP.NET Core Web API utilities</Description>
+    <Description>Partial object generator</Description>
   </PropertyGroup>
-
-  <PropertyGroup>
-    <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.2" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
   </ItemGroup>
-
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.6'">
+    <PackageReference Include="System.Reflection.TypeExtensions">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
 </Project>

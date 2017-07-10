@@ -5,7 +5,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 
-namespace Yeast.WebApi.Internal
+namespace Yeast.Partials.Internal
 {
     internal class PartialObject : DynamicObject
     {

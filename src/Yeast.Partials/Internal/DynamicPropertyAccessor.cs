@@ -4,7 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Yeast.WebApi.Internal
+namespace Yeast.Partials.Internal
 {
     internal class DynamicPropertyAccessor : PropertyAccessor
     {

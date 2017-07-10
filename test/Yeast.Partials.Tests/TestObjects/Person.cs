@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Yeast.WebApi.Tests.TestObjects
+namespace Yeast.Partials.Tests.TestObjects
 {
     public class Person
     {

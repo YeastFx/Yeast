@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}"
 EndProject
@@ -21,41 +21,45 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Multitenancy.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Modules", "src\Yeast.Modules\Yeast.Modules.csproj", "{88D990F9-0852-4FE6-A7EA-0EB90EEA1DC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Modules.Tests", "test\Yeast.Modules.Tests\Yeast.Modules.Tests.csproj", "{C0D33E4A-3ABF-4879-BFEC-79F699C2BB59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Modules.Tests", "test\Yeast.Modules.Tests\Yeast.Modules.Tests.csproj", "{C0D33E4A-3ABF-4879-BFEC-79F699C2BB59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{A5110279-498A-4DFE-A616-9A6688269570}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleA", "test\Modules\ModuleA\ModuleA.csproj", "{9A03E7E4-3B6D-41A7-9E05-CA03FFD819B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleA", "test\Modules\ModuleA\ModuleA.csproj", "{9A03E7E4-3B6D-41A7-9E05-CA03FFD819B2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModuleB", "test\Modules\ModuleB\ModuleB.csproj", "{DE9D30B4-F8B5-4397-B18B-990D946F23CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Modules.Abstractions", "src\Yeast.Modules.Abstractions\Yeast.Modules.Abstractions.csproj", "{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Modules.Abstractions", "src\Yeast.Modules.Abstractions\Yeast.Modules.Abstractions.csproj", "{F1B4F366-76F7-4CBF-BEE4-989C6419DDC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotAModule", "test\Modules\NotAModule\NotAModule.csproj", "{6D94C189-F279-426E-B61F-83B31791E7B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotAModule", "test\Modules\NotAModule\NotAModule.csproj", "{6D94C189-F279-426E-B61F-83B31791E7B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Features.Abstractions", "src\Yeast.Features.Abstractions\Yeast.Features.Abstractions.csproj", "{15C92359-50A5-43AE-9738-657D30546727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Features.Abstractions", "src\Yeast.Features.Abstractions\Yeast.Features.Abstractions.csproj", "{15C92359-50A5-43AE-9738-657D30546727}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Features", "src\Yeast.Features\Yeast.Features.csproj", "{D92B72F6-0BAE-4E7E-9D46-21B9B18F97C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Features", "src\Yeast.Features\Yeast.Features.csproj", "{D92B72F6-0BAE-4E7E-9D46-21B9B18F97C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Features.Tests", "test\Yeast.Features.Tests\Yeast.Features.Tests.csproj", "{253844DF-B285-4E6C-B5F7-A7CE28A24717}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Features.Tests", "test\Yeast.Features.Tests\Yeast.Features.Tests.csproj", "{253844DF-B285-4E6C-B5F7-A7CE28A24717}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.AspNetCore.Abstractions", "src\Yeast.AspNetCore.Abstractions\Yeast.AspNetCore.Abstractions.csproj", "{439B934A-93D2-4175-AE9F-3EB77F5E6777}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.AspNetCore.Abstractions", "src\Yeast.AspNetCore.Abstractions\Yeast.AspNetCore.Abstractions.csproj", "{439B934A-93D2-4175-AE9F-3EB77F5E6777}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Mvc", "src\Yeast.Mvc\Yeast.Mvc.csproj", "{CB1FD0C3-73B9-4F82-B7C7-67D312951F36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Mvc", "src\Yeast.Mvc\Yeast.Mvc.csproj", "{CB1FD0C3-73B9-4F82-B7C7-67D312951F36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Mvc.Abstractions", "src\Yeast.Mvc.Abstractions\Yeast.Mvc.Abstractions.csproj", "{D5A9FC6A-9EB2-4649-BFFF-8E52F4A1FBB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Mvc.Abstractions", "src\Yeast.Mvc.Abstractions\Yeast.Mvc.Abstractions.csproj", "{D5A9FC6A-9EB2-4649-BFFF-8E52F4A1FBB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Mvc.Tests", "test\Yeast.Mvc.Tests\Yeast.Mvc.Tests.csproj", "{89302421-B5D7-4383-94A5-48E43F8FD9F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Mvc.Tests", "test\Yeast.Mvc.Tests\Yeast.Mvc.Tests.csproj", "{89302421-B5D7-4383-94A5-48E43F8FD9F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.AspNetCore", "src\Yeast.AspNetCore\Yeast.AspNetCore.csproj", "{82800480-5A26-4208-B70F-4CC2F8DB326F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.AspNetCore", "src\Yeast.AspNetCore\Yeast.AspNetCore.csproj", "{82800480-5A26-4208-B70F-4CC2F8DB326F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.WebApi", "src\Yeast.WebApi\Yeast.WebApi.csproj", "{7679896F-87D7-4B79-A53C-2A2EF986CDA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Data", "src\Yeast.Data\Yeast.Data.csproj", "{7D496479-7F9C-409C-BD0F-A905D7E8918A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Data", "src\Yeast.Data\Yeast.Data.csproj", "{7D496479-7F9C-409C-BD0F-A905D7E8918A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Security.Jwt", "src\Yeast.Security.Jwt\Yeast.Security.Jwt.csproj", "{6DB4E961-9B05-4DFB-B873-42B010864704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.Security.Jwt", "src\Yeast.Security.Jwt\Yeast.Security.Jwt.csproj", "{6DB4E961-9B05-4DFB-B873-42B010864704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.WebApi.Tests", "test\Yeast.WebApi.Tests\Yeast.WebApi.Tests.csproj", "{8E0511E9-A3D6-481A-B070-BDB9B8065186}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeast.WebApi.Tests", "test\Yeast.WebApi.Tests\Yeast.WebApi.Tests.csproj", "{8E0511E9-A3D6-481A-B070-BDB9B8065186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Partials", "src\Yeast.Partials\Yeast.Partials.csproj", "{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yeast.Partials.Tests", "test\Yeast.Partials.Tests\Yeast.Partials.Tests.csproj", "{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -307,6 +311,30 @@ Global
 		{8E0511E9-A3D6-481A-B070-BDB9B8065186}.Release|x64.Build.0 = Release|Any CPU
 		{8E0511E9-A3D6-481A-B070-BDB9B8065186}.Release|x86.ActiveCfg = Release|Any CPU
 		{8E0511E9-A3D6-481A-B070-BDB9B8065186}.Release|x86.Build.0 = Release|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Debug|x64.Build.0 = Debug|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Release|x64.ActiveCfg = Release|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Release|x64.Build.0 = Release|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA}.Release|x86.Build.0 = Release|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Debug|x64.Build.0 = Debug|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Debug|x86.Build.0 = Debug|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Release|x64.ActiveCfg = Release|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Release|x64.Build.0 = Release|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Release|x86.ActiveCfg = Release|Any CPU
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -333,5 +361,7 @@ Global
 		{7D496479-7F9C-409C-BD0F-A905D7E8918A} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{6DB4E961-9B05-4DFB-B873-42B010864704} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
 		{8E0511E9-A3D6-481A-B070-BDB9B8065186} = {F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}
+		{6E271845-86F8-49E5-95F7-7BC3EA40F3BA} = {0837E7B1-31F6-48EB-8445-A1C1D5CB82D3}
+		{F51E506D-31DF-4715-9A1F-8D81AFD8B84E} = {F9CE43E7-2576-4494-9A6A-87E2D89ACF0D}
 	EndGlobalSection
 EndGlobal

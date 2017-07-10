@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Yeast.WebApi.Internal
+namespace Yeast.Partials.Internal
 {
     internal abstract class PropertyAccessor
     {
